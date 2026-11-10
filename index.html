@@ -41,7 +41,7 @@ body{margin:0;background:var(--white);color:var(--ink);font:17px/1.7 var(--font-
 img{display:block;max-width:100%;height:auto}
 a{color:var(--link);text-underline-offset:2px}
 a:focus-visible{outline:2px solid var(--link);outline-offset:3px;border-radius:4px}
-h1,h2{font-family:var(--font-display);font-weight:400;letter-spacing:-0.01em}
+h1,h2,h3{font-family:var(--font-display);font-weight:400;letter-spacing:-0.01em}
 p{margin:0}
 .wrap{max-width:1080px;margin-inline:auto;padding-inline:var(--space-xl)}
 
@@ -65,11 +65,15 @@ h1{font-size:40px;line-height:1.25;margin:var(--space-xxl) 0 var(--space-lg)}
 .features{display:grid;gap:var(--gap-block);margin-top:var(--gap-block)}
 .feature{display:grid;gap:var(--space-xxl);align-content:start}
 h2{font-size:28px;line-height:1.3;margin:0 0 var(--space-md)}
-.feature p,.more p{color:var(--ink-soft)}
+.feature p{color:var(--ink-soft)}
 
-.more{display:grid;gap:var(--space-lg);margin-top:var(--gap-block)}
-.more section{padding:var(--space-xl);border:1px solid var(--line);border-radius:var(--radius-md)}
-.more h2{font-size:22px;margin-bottom:var(--space-sm)}
+.notebook{display:grid;gap:var(--space-xxl);margin-top:var(--gap-block)}
+.notebook p{color:var(--ink-soft)}
+/* 화면 두 장을 나란히. 폰에서는 칸 폭을 반씩 나누고, 넓으면 다른 캡처와 같은 폭에서 멈춘다 */
+.shot--pair{gap:var(--space-md);align-items:flex-start}
+.shot--pair img{width:min(var(--shot-width),calc(50% - var(--space-md) / 2))}
+.card{padding:var(--space-xl);border:1px solid var(--line);border-radius:var(--radius-md)}
+h3{font-size:22px;line-height:1.3;margin:0 0 var(--space-sm)}
 
 footer{margin-top:var(--gap-block);padding:var(--space-section) 0 48px;border-top:1px solid var(--line);font-size:14px;line-height:1.6;color:var(--muted)}
 footer nav{display:flex;flex-wrap:wrap;gap:0 var(--space-xl);font-size:15px}
@@ -92,9 +96,14 @@ footer a{color:var(--muted)}
   .features{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-xxl)}
   .feature{gap:var(--space-xl)}
   .feature .shot{order:-1}
-  .more{grid-template-columns:1fr 1fr;gap:var(--space-xl)}
-  .more section{padding:var(--space-xxl)}
-  .more h2{font-size:24px}
+  /* 여행 수첩: 글과 기록 카드는 왼쪽, 화면 두 장은 오른쪽 */
+  .notebook{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"text shot" "card shot";column-gap:72px;row-gap:var(--space-xl);align-content:center}
+  .notebook .text{grid-area:text;align-self:end}
+  .notebook .shot{grid-area:shot}
+  /* auto 칸에서는 % 폭이 풀리지 않아 캡처 폭을 직접 준다. 900px 근처에서는 글 칸이 남도록 줄인다 */
+  .notebook .shot img{width:clamp(180px,19vw,var(--shot-width))}
+  .notebook .card{grid-area:card;align-self:start;padding:var(--space-xxl)}
+  h3{font-size:24px}
 }
 </style>
 </head>
@@ -138,16 +147,21 @@ footer a{color:var(--muted)}
     </section>
   </div>
 
-  <div class="more">
-    <section>
+  <!-- 기록은 앱의 여행 수첩 탭 안에 있어 이 칸에 함께 둔다 -->
+  <section class="notebook">
+    <div class="text">
       <h2>여행 수첩</h2>
       <p>여행 일본어, 긴급 연락, 교통카드, 면세, 입국 준비를 정리했어요. 일본어 문장은 소리로 들을 수 있어요.</p>
-    </section>
-    <section>
-      <h2>기록</h2>
+    </div>
+    <figure class="shot shot--pair">
+      <img src="assets/screens/tips.webp" width="750" height="1631" loading="lazy" alt="여행 일본어, 긴급 연락, 교통카드, 면세, 입국 준비가 모인 여행 꿀팁 목록">
+      <img src="assets/screens/phrases.webp" width="750" height="1631" loading="lazy" alt="상황별 일본어 문장과 읽는 법이 있는 여행 일본어 화면">
+    </figure>
+    <section class="card">
+      <h3>기록</h3>
       <p>사진과 한 줄을 도시에 남겨요. 원할 때만 다녀온 사람들에 공개돼요.</p>
     </section>
-  </div>
+  </section>
 </div>
 </main>
 
