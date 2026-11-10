@@ -1,8 +1,166 @@
 <!doctype html>
-<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>문의 | 스탄푸</title><style>body{margin:0 auto;max-width:640px;padding:32px 16px 64px;font:16px/1.7 -apple-system,'Apple SD Gothic Neo',sans-serif;color:#15161A;background:#fff}
-h1{font-size:26px;margin:0 0 4px}h2{font-size:18px;margin:32px 0 8px}p{margin:0 0 8px}.muted{color:#6A6C72;font-size:14px}nav{margin-top:40px;font-size:14px}a{color:#1F5FB8}</style></head>
-<body><h1>스탄푸 문의</h1><p>앱 사용 문의, 글 신고, 계정 삭제 요청은 아래 주소로 보내 주세요.</p><p><a href="mailto:sutanpu.app@gmail.com">sutanpu.app@gmail.com</a></p>
-<h2>계정 삭제</h2><p>앱의 여행 수첩 › 설정 › 계정에서 바로 탈퇴할 수 있어요. 앱 없이 요청하는 방법은 <a href="delete-account.html">계정 삭제</a>에 있어요.</p>
-<nav><a href="terms.html">이용약관</a> · <a href="privacy.html">개인정보처리방침</a> · <a href="support.html">문의</a> · <a href="delete-account.html">계정 삭제</a></nav>
-</body></html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>스탄푸 | 일본 도시마다 찍는 여행 도장</title>
+<meta name="description" content="다녀온 일본 도시에 도장을 찍어 내 일본 지도를 채워요. 도시 1,719곳을 찾을 수 있고, 다음 여행지는 취향 질문 7개로 골라 드려요.">
+<link rel="canonical" href="https://sossost.github.io/sutanpu-site/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="스탄푸">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:url" content="https://sossost.github.io/sutanpu-site/">
+<meta property="og:title" content="스탄푸 | 일본 도시마다 찍는 여행 도장">
+<meta property="og:description" content="다녀온 일본 도시에 도장을 찍어 내 일본 지도를 채워요. 도시 1,719곳을 찾을 수 있고, 다음 여행지는 취향 질문 7개로 골라 드려요.">
+<meta property="og:image" content="https://sossost.github.io/sutanpu-site/assets/og-image.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="스탄푸 앱 아이콘과 빨간 도장 그림">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preload" href="assets/jua-subset.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* 색·간격은 앱 토큰(src/ui/theme.ts)을 따른다. 쪽 사이 간격만 웹에서 더했다 */
+@font-face{font-family:'Jua';src:url(assets/jua-subset.woff2) format('woff2');font-display:swap}
+:root{
+  --suki:#FF3D5A;--suki-soft:#FFF0F2;--ink:#15161A;--ink-soft:#36383D;--muted:#6A6C72;--line:#ECEEF2;--cloud:#F1F3F6;--link:#1F5FB8;--white:#FFFFFF;
+  --space-sm:8px;--space-md:12px;--space-lg:16px;--space-xl:20px;--space-xxl:28px;--space-section:36px;
+  --gap-block:64px;
+  --radius-md:16px;--radius-lg:22px;
+  --font-display:'Jua',-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif;
+  --font-body:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif;
+  --shot-width:240px;
+  --min-touch:44px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--white);color:var(--ink);font:17px/1.7 var(--font-body);word-break:keep-all;overflow-wrap:break-word}
+img{display:block;max-width:100%;height:auto}
+a{color:var(--link);text-underline-offset:2px}
+a:focus-visible{outline:2px solid var(--link);outline-offset:3px;border-radius:4px}
+h1,h2{font-family:var(--font-display);font-weight:400;letter-spacing:-0.01em}
+p{margin:0}
+.wrap{max-width:1080px;margin-inline:auto;padding-inline:var(--space-xl)}
+
+.hero{display:grid;gap:var(--space-section);padding-top:var(--space-xxl)}
+.brand{display:flex;align-items:center;gap:var(--space-md);margin:0}
+.brand img{width:48px;height:48px;border-radius:22.37%;box-shadow:0 0 0 1px var(--line)}
+.brand span{font-family:var(--font-display);font-size:24px;line-height:1}
+h1{font-size:40px;line-height:1.25;margin:var(--space-xxl) 0 var(--space-lg)}
+.lead{color:var(--ink-soft)}
+/* App Store 배지: 높이 40px 이상, 둘레에 높이의 1/4 이상 비움 (Apple 마케팅 가이드라인) */
+.store{display:inline-block;margin-top:var(--space-xxl);border-radius:9px}
+.store:focus-visible{border-radius:9px}
+.store img{height:52px;width:auto}
+.note{margin-top:var(--space-lg);font-size:14px;line-height:1.6;color:var(--muted)}
+
+.shot{margin:0;padding:var(--space-section) var(--space-xl);border-radius:var(--radius-lg);background:var(--cloud);display:flex;justify-content:center}
+.shot--accent{background:var(--suki-soft)}
+/* 아이폰 화면 모서리 비율(가로의 13.7%)을 세로 비율로 바꿔 둥근 모서리가 크기를 따라가게 한다 */
+.shot img{width:var(--shot-width);border-radius:13.7%/6.3%;box-shadow:0 0 0 1px rgba(21,22,26,.06),0 16px 40px rgba(21,22,26,.12)}
+
+.features{display:grid;gap:var(--gap-block);margin-top:var(--gap-block)}
+.feature{display:grid;gap:var(--space-xxl);align-content:start}
+h2{font-size:28px;line-height:1.3;margin:0 0 var(--space-md)}
+.feature p,.more p{color:var(--ink-soft)}
+
+.more{display:grid;gap:var(--space-lg);margin-top:var(--gap-block)}
+.more section{padding:var(--space-xl);border:1px solid var(--line);border-radius:var(--radius-md)}
+.more h2{font-size:22px;margin-bottom:var(--space-sm)}
+
+footer{margin-top:var(--gap-block);padding:var(--space-section) 0 48px;border-top:1px solid var(--line);font-size:14px;line-height:1.6;color:var(--muted)}
+footer nav{display:flex;flex-wrap:wrap;gap:0 var(--space-xl);font-size:15px}
+footer nav a{color:var(--ink);text-decoration:none;min-height:var(--min-touch);display:inline-flex;align-items:center}
+footer nav a:hover{text-decoration:underline}
+footer h2{font-family:var(--font-body);font-size:14px;font-weight:600;letter-spacing:0;color:var(--ink-soft);margin:var(--space-xxl) 0 var(--space-sm)}
+footer ul{margin:0;padding:0;list-style:none;display:grid;gap:var(--space-sm)}
+footer a{color:var(--muted)}
+.legal{margin-top:var(--space-xxl)}
+
+@media (min-width:900px){
+  :root{--gap-block:96px}
+  .wrap{padding-inline:40px}
+  .hero{grid-template-columns:minmax(0,1fr) 400px;gap:72px;align-items:center;padding-top:72px}
+  .hero .shot img{width:300px}
+  /* 900px 근처에서 글 칸이 좁아 제목이 세 줄로 갈라지지 않게 폭에 따라 줄인다 */
+  h1{font-size:clamp(40px,4.4vw,56px)}
+  .lead{font-size:19px}
+  /* 넓은 화면에서는 기능 셋을 한 줄에 놓고 화면을 위로 올려 높이를 맞춘다 */
+  .features{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-xxl)}
+  .feature{gap:var(--space-xl)}
+  .feature .shot{order:-1}
+  .more{grid-template-columns:1fr 1fr;gap:var(--space-xl)}
+  .more section{padding:var(--space-xxl)}
+  .more h2{font-size:24px}
+}
+</style>
+</head>
+<body>
+<main>
+<section class="hero wrap">
+  <div>
+    <p class="brand"><img src="assets/icon-192.png" width="192" height="192" alt=""><span>스탄푸</span></p>
+    <h1>일본 도시마다 찍는<br>여행 도장</h1>
+    <p class="lead">다녀온 일본 도시에 도장을 찍어 내 일본 지도를 채워요. 도시 1,719곳을 찾을 수 있고, 다음 여행지는 취향 질문 7개로 골라 드려요.</p>
+    <a class="store" href="https://apps.apple.com/kr/app/%EC%8A%A4%ED%83%84%ED%91%B8/id6829795097"><img src="assets/app-store-badge-ko.svg" width="130" height="40" alt="App Store에서 다운로드 하기"></a>
+    <p class="note">지금은 iPhone에서만 받을 수 있어요. 둘러보기는 로그인 없이 할 수 있고, 광고는 없어요.</p>
+  </div>
+  <figure class="shot shot--accent"><img src="assets/screens/home.webp" width="750" height="1631" fetchpriority="high" alt="가 본 현 21곳이 빨갛게 칠해진 일본 지도와 도장 찍기 단추가 있는 첫 화면"></figure>
+</section>
+
+<div class="wrap">
+  <div class="features">
+    <section class="feature">
+      <div class="text">
+        <h2>도장</h2>
+        <p>시·정·촌 1,719곳을 이름으로 찾아 도장을 찍어요. 찍은 날짜가 함께 남고, 가 본 현은 지도에 색이 칠해져요.</p>
+      </div>
+      <figure class="shot"><img src="assets/screens/stamps.webp" width="750" height="1631" loading="lazy" alt="지방과 현별로 찍은 도장이 날짜와 함께 모인 도장 도감 화면"></figure>
+    </section>
+
+    <section class="feature">
+      <div class="text">
+        <h2>다음 여행지</h2>
+        <p>소도시 56곳을 추천해요. 질문 7개에 답하면 취향에 맞는 세 곳을 골라 주고, 온천·먹거리 같은 주제로도 볼 수 있어요.</p>
+      </div>
+      <figure class="shot"><img src="assets/screens/find.webp" width="750" height="1631" loading="lazy" alt="온천, 옛 골목, 성·절·정원처럼 하고 싶은 걸 세 개까지 고르는 질문 화면"></figure>
+    </section>
+
+    <section class="feature">
+      <div class="text">
+        <h2>도시 페이지</h2>
+        <p>도시 1,719곳 모두 소개가 있어요. 볼거리, 먹거리, 사진은 도시마다 양이 달라요. 내용은 공식 관광 사이트 같은 출처를 확인해 썼어요.</p>
+      </div>
+      <figure class="shot"><img src="assets/screens/city.webp" width="750" height="1631" loading="lazy" alt="마쓰모토성 사진 아래 도장과 도시 소개가 있는 마쓰모토 도시 페이지"></figure>
+    </section>
+  </div>
+
+  <div class="more">
+    <section>
+      <h2>여행 수첩</h2>
+      <p>여행 일본어, 긴급 연락, 교통카드, 면세, 입국 준비를 정리했어요. 일본어 문장은 소리로 들을 수 있어요.</p>
+    </section>
+    <section>
+      <h2>기록</h2>
+      <p>사진과 한 줄을 도시에 남겨요. 원할 때만 다녀온 사람들에 공개돼요.</p>
+    </section>
+  </div>
+</div>
+</main>
+
+<footer>
+<div class="wrap">
+  <nav aria-label="안내 페이지"><a href="support.html">문의</a><a href="privacy.html">개인정보처리방침</a><a href="terms.html">이용약관</a></nav>
+  <h2>화면 속 지도와 사진</h2>
+  <ul>
+    <li>일본 지도: Map of Japan © Victor Cazanave, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, <a href="https://github.com/VictorCazanave/svg-maps/tree/master/packages/japan">GitHub</a>. 오키나와 자리를 옮기고 색을 칠했어요.</li>
+    <li>마쓰모토성 사진: Balon Greyjoy, <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, <a href="https://commons.wikimedia.org/wiki/File:20190706_Matsumoto_Castle-8.jpg">위키미디어 공용</a></li>
+  </ul>
+  <p class="legal">Apple, Apple 로고, iPhone, App Store는 미국과 그 밖의 나라에 등록된 Apple Inc.의 상표예요.</p>
+</div>
+</footer>
+</body>
+</html>
