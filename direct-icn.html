@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>인천에서 직항으로 가는 일본 소도시 | 스탄푸</title>
+<meta name="description" content="인천공항에서 직항으로 가는 일본 지방 공항 21곳과 가까운 소도시 40곳. 항공사·주간 편수, 공항에서 걸리는 시간과 가는 길. 2026년 11월 1일에 확인한 겨울 시간표(10월 25일~3월 27일) 기준이에요.">
+<link rel="canonical" href="https://sossost.github.io/sutanpu-site/direct-icn.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="스탄푸">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:url" content="https://sossost.github.io/sutanpu-site/direct-icn.html">
+<meta property="og:title" content="인천에서 직항으로 가는 일본 소도시">
+<meta property="og:description" content="인천공항에서 직항으로 가는 일본 지방 공항 21곳과 가까운 소도시 40곳. 항공사·주간 편수, 공항에서 걸리는 시간과 가는 길. 2026년 11월 1일에 확인한 겨울 시간표(10월 25일~3월 27일) 기준이에요.">
+<meta property="og:image" content="https://sossost.github.io/sutanpu-site/assets/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<!-- tools/gen-direct-pages.mjs가 만든 파일이다. 손으로 고치지 않고 src/data를 고친 뒤 다시 만든다 -->
+<style>
+/* 색은 앱 토큰(src/ui/theme.ts), 간격·글꼴은 공개 사이트 첫 화면(index.html)을 따른다 */
+@font-face{font-family:'Jua';src:url(assets/jua-direct.woff2) format('woff2');font-weight:700;font-display:swap}
+:root{
+  --suki-deep:#D81E3F;--suki-soft:#FFF0F2;--ink:#15161A;--ink-soft:#36383D;--muted:#6A6C72;--line:#ECEEF2;--cloud:#F1F3F6;--link:#1F5FB8;--white:#FFFFFF;
+  --font-display:'Jua',-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif;
+  --font-body:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--white);color:var(--ink);font:17px/1.7 var(--font-body);word-break:keep-all;overflow-wrap:break-word}
+img{display:block;max-width:100%;height:auto}
+a{color:var(--link);text-underline-offset:2px}
+a:focus-visible{outline:2px solid var(--link);outline-offset:3px;border-radius:4px}
+p{margin:0}
+h1,h2,.brand span{font-family:var(--font-display);font-weight:700;letter-spacing:-0.01em}
+.wrap{max-width:720px;margin-inline:auto;padding-inline:20px}
+.brand{display:inline-flex;align-items:center;gap:12px;margin-top:28px;color:var(--ink);text-decoration:none}
+.brand img{width:40px;height:40px;border-radius:22.37%;box-shadow:0 0 0 1px var(--line)}
+.brand span{font-size:22px;line-height:1}
+h1{font-size:32px;line-height:1.3;margin:28px 0 16px;text-wrap:balance}
+.lead{color:var(--ink-soft)}
+.note{margin-top:12px;font-size:14px;line-height:1.6;color:var(--muted)}
+h2{font-size:24px;line-height:1.3;margin:0 0 8px}
+.block{margin-top:48px}
+table{width:100%;border-collapse:collapse;font-size:15px;line-height:1.5}
+th,td{text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+thead th{padding:8px 0;font-size:13px;font-weight:600;color:var(--muted)}
+tbody th{width:40%;font-weight:600}
+tbody th a{display:block;padding:12px 12px 12px 0;color:var(--ink);text-decoration:none}
+tbody th a:hover{text-decoration:underline}
+tbody th small{display:block;font-size:13px;font-weight:400;color:var(--muted)}
+tbody td{padding:12px 0;color:var(--ink-soft)}
+.app-link{display:inline-block;padding:10px 0;font-weight:600}
+.airport{margin-top:48px;padding-top:28px;border-top:1px solid var(--line)}
+.airport h2 small{margin-left:8px;font-family:var(--font-body);font-size:14px;font-weight:400;letter-spacing:0;color:var(--muted)}
+.flight{font-size:15px;line-height:1.6;color:var(--ink-soft)}
+.city{margin-top:16px;padding:16px;border:1px solid var(--line);border-radius:16px}
+.city--plain{border-color:transparent;background:var(--cloud)}
+.city-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 12px}
+.city h3{margin:0;font-size:19px;line-height:1.3;font-weight:700}
+.time{padding:3px 10px;border-radius:999px;background:var(--suki-soft);color:var(--suki-deep);font-size:13px;font-weight:600;white-space:nowrap}
+.city--plain .time{background:var(--white)}
+.why{margin-top:8px;font-size:16px;line-height:1.6;color:var(--ink-soft)}
+.more{margin-top:8px;font-size:14px;line-height:1.6;color:var(--muted)}
+.more b{margin-right:8px;font-weight:600;color:var(--ink-soft)}
+.sub{margin-top:28px;font-size:14px;font-weight:600;color:var(--ink-soft)}
+.empty{margin-top:16px;font-size:15px;color:var(--muted)}
+.cta{margin-top:64px;padding:28px 20px;border-radius:22px;background:var(--suki-soft)}
+.cta p{color:var(--ink-soft)}
+/* App Store 배지: 높이 40px 이상, 둘레에 높이의 1/4 이상 비움 (Apple 마케팅 가이드라인). 한 장에 하나만 둔다 */
+.store{display:inline-block;margin-top:20px;border-radius:9px}
+.store img{height:52px;width:auto}
+.others{margin:8px 0 0;padding:0;list-style:none}
+.others a{display:block;padding:10px 0}
+footer{margin-top:64px;padding:36px 0 48px;border-top:1px solid var(--line);font-size:14px;line-height:1.6;color:var(--muted)}
+footer nav{display:flex;flex-wrap:wrap;gap:0 20px;font-size:15px}
+footer nav a{color:var(--ink);text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+footer nav a:hover{text-decoration:underline}
+.legal{margin-top:20px}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <a class="brand" href="./"><img src="assets/icon-192.png" width="192" height="192" alt=""><span>스탄푸</span></a>
+  <h1>인천에서 직항으로 가는 일본 소도시</h1>
+  <p class="lead">이번 겨울 인천공항에서 직항으로 가는 일본 지방 공항은 21곳이에요. 공항마다 가까운 소도시 40곳과 가는 길이에요.</p>
+  <p class="note">2026년 11월 1일에 확인한 겨울 시간표(10월 25일~3월 27일) 기준이에요. 출발 전 항공사에서 다시 확인해 주세요.</p>
+
+  <section class="block">
+    <h2>직항으로 가는 지방 공항 21곳</h2>
+    <table>
+      <thead><tr><th scope="col">공항</th><th scope="col">항공사·주간 편수</th></tr></thead>
+      <tbody>
+        <tr><th scope="row"><a href="#myj">마쓰야마<small>에히메현</small></a></th><td>제주항공, 주 14회</td></tr>
+        <tr><th scope="row"><a href="#tak">다카마쓰<small>가가와현</small></a></th><td>에어서울, 진에어, 주 14회</td></tr>
+        <tr><th scope="row"><a href="#tks">도쿠시마<small>도쿠시마현</small></a></th><td>이스타항공, 주 3회</td></tr>
+        <tr><th scope="row"><a href="#okj">오카야마<small>오카야마현</small></a></th><td>대한항공</td></tr>
+        <tr><th scope="row"><a href="#hij">히로시마<small>히로시마현</small></a></th><td>제주항공 주 14회, 대한항공 12월 23일부터 주 7회</td></tr>
+        <tr><th scope="row"><a href="#ygj">요나고<small>돗토리현</small></a></th><td>에어서울, 주 5회</td></tr>
+        <tr><th scope="row"><a href="#kmq">고마쓰<small>이시카와현</small></a></th><td>대한항공, 주 7회</td></tr>
+        <tr><th scope="row"><a href="#kij">니가타<small>니가타현</small></a></th><td>대한항공, 주 7회</td></tr>
+        <tr><th scope="row"><a href="#aoj">아오모리<small>아오모리현</small></a></th><td>대한항공, 주 5회</td></tr>
+        <tr><th scope="row"><a href="#sdj">센다이<small>미야기현</small></a></th><td>아시아나항공 12월 16일까지, 대한항공 12월 18일부터 주 7회, 제주항공 1월 8일부터 주 3회</td></tr>
+        <tr><th scope="row"><a href="#fsz">시즈오카<small>시즈오카현</small></a></th><td>제주항공, 주 14회</td></tr>
+        <tr><th scope="row"><a href="#hkd">하코다테<small>홋카이도</small></a></th><td>제주항공 12월 1일~3월 2일, 주 7회</td></tr>
+        <tr><th scope="row"><a href="#kkj">기타큐슈<small>후쿠오카현</small></a></th><td>진에어, 주 7회</td></tr>
+        <tr><th scope="row"><a href="#oit">오이타<small>오이타현</small></a></th><td>대한항공, 제주항공</td></tr>
+        <tr><th scope="row"><a href="#kmj">구마모토<small>구마모토현</small></a></th><td>대한항공, 트리니티항공</td></tr>
+        <tr><th scope="row"><a href="#koj">가고시마<small>가고시마현</small></a></th><td>대한항공, 제주항공, 이스타항공</td></tr>
+        <tr><th scope="row"><a href="#kmi">미야자키<small>미야자키현</small></a></th><td>아시아나항공 12월 16일까지 주 3회, 대한항공 12월 18일부터 주 7회</td></tr>
+        <tr><th scope="row"><a href="#hsg">사가<small>사가현</small></a></th><td>트리니티항공, 주 4회</td></tr>
+        <tr><th scope="row"><a href="#ngs">나가사키<small>나가사키현</small></a></th><td>대한항공, 주 4회</td></tr>
+        <tr><th scope="row"><a href="#shi">미야코(시모지시마)<small>오키나와현</small></a></th><td>진에어, 주 7회</td></tr>
+        <tr><th scope="row"><a href="#isg">이시가키<small>오키나와현</small></a></th><td>진에어, 주 7회</td></tr>
+      </tbody>
+    </table>
+    <p class="note">주 N회가 안 적힌 항공사는 편수를 확인 못 했어요.</p>
+    <p class="note">대도시 공항(도쿄, 간사이, 후쿠오카, 삿포로, 나고야, 오키나와, 고베) 노선은 빼고 지방 공항만 적었어요.</p>
+  </section>
+  <p class="note">추천 소도시 56곳은 스탄푸 앱에서 더 볼 수 있어요. <a class="app-link" href="https://apps.apple.com/app/apple-store/id6829795097?pt=129681187&amp;ct=web&amp;mt=8">App Store에서 스탄푸 받기</a></p>
+
+    <section class="airport" id="myj">
+      <h2>마쓰야마공항<small>에히메현</small></h2>
+      <p class="flight">제주항공, 주 14회</p>
+      <article class="city">
+        <div class="city-head"><h3>마쓰야마</h3><span class="time">공항에서 15분</span></div>
+        <p class="why">1894년에 지은 목조 공중탕 도고 온천 본관에 들어가요.</p>
+        <p class="more"><b>가는 길</b>공항버스로 마쓰야마역까지 15분, 도고 온천까지 40분</p>
+      </article>
+      <p class="sub">공항에서 1시간 30분 넘게 걸리는 곳</p>
+      <article class="city city--plain">
+        <div class="city-head"><h3>고치</h3><span class="time">공항에서 3시간 5분</span></div>
+        <p class="why">히로메 시장에서 짚불에 바로 구운 가쓰오 다타키를 먹어요.</p>
+        <p class="more"><b>가는 길</b>마쓰야마역까지 버스 15분, 고속버스 2시간 40분(하루 4편)</p>
+      </article>
+    </section>
+
+    <section class="airport" id="tak">
+      <h2>다카마쓰공항<small>가가와현</small></h2>
+      <p class="flight">에어서울, 진에어, 주 14회</p>
+      <article class="city">
+        <div class="city-head"><h3>다카마쓰</h3><span class="time">공항에서 45분</span></div>
+        <p class="why">셀프 우동집이 아침부터 열고 한 그릇에 몇백 엔이에요.</p>
+        <p class="more"><b>가는 길</b>공항버스 45분</p>
+      </article>
+      <p class="sub">공항에서 1시간 30분 넘게 걸리는 곳</p>
+      <article class="city city--plain">
+        <div class="city-head"><h3>나오시마</h3><span class="time">공항에서 1시간 40분</span></div>
+        <p class="why">안도 다다오가 지은 지추 미술관에는 자연광만 드는 방에 모네 『수련』이 걸려 있어요. 날짜와 시간을 정해 미리 예약해요.</p>
+        <p class="more"><b>가는 길</b>다카마쓰항까지 버스 45분, 페리 50분(하루 5편)</p>
+      </article>
+      <article class="city city--plain">
+        <div class="city-head"><h3>쇼도시마</h3><span class="time">공항에서 1시간 45분</span></div>
+        <p class="why">썰물 때만 바닷길이 열려 걸어서 건너는 엔젤 로드가 있어요.</p>
+        <p class="more"><b>가는 길</b>다카마쓰항까지 버스 45분, 도노쇼항까지 페리 1시간</p>
+      </article>
+    </section>
+
+    <section class="airport" id="tks">
+      <h2>도쿠시마공항<small>도쿠시마현</small></h2>
+      <p class="flight">이스타항공, 주 3회</p>
+      <article class="city">
+        <div class="city-head"><h3>도쿠시마·나루토</h3><span class="time">공항에서 30분</span></div>
+        <p class="why">나루토 해협 소용돌이를 관광선 위에서 내려다봐요. 물살이 가장 빠른 때 앞뒤 1시간 반이 잘 보여 조류 시간표를 보고 가요.</p>
+        <p class="more"><b>가는 길</b>공항버스 30분</p>
+      </article>
+    </section>
+
+    <section class="airport" id="okj">
+      <h2>오카야마공항<small>오카야마현</small></h2>
+      <p class="flight">대한항공</p>
+      <article class="city">
+        <div class="city-head"><h3>구라시키</h3><span class="time">공항에서 35분</span></div>
+        <p class="why">미관지구 운하를 따라 흰 벽 창고가 늘어서 있어요.</p>
+        <p class="more"><b>가는 길</b>공항버스 35분</p>
+      </article>
+    </section>
+
+    <section class="airport" id="hij">
+      <h2>히로시마공항<small>히로시마현</small></h2>
+      <p class="flight">제주항공 주 14회, 대한항공 12월 23일부터 주 7회</p>
+      <article class="city">
+        <div class="city-head"><h3>오노미치</h3><span class="time">공항에서 1시간 5분</span></div>
+        <p class="why">산비탈 골목을 따라 절 25곳과 고양이 골목이 이어져요.</p>
+        <p class="more"><b>가는 길</b>미하라역까지 버스 40분(하루 5편), 기차 15분</p>
+      </article>
+      <p class="sub">공항에서 1시간 30분 넘게 걸리는 곳</p>
+      <article class="city city--plain">
+        <div class="city-head"><h3>미야지마</h3><span class="time">공항에서 1시간 50분</span></div>
+        <p class="why">밀물 때 이쓰쿠시마 신사 도리이가 바다 위에 서요.</p>
+        <p class="more"><b>겨울</b>굴은 겨울이 제철이에요.</p>
+        <p class="more"><b>가는 길</b>히로시마역까지 버스 50분, 전철과 배 1시간</p>
+      </article>
+    </section>
+
+    <section class="airport" id="ygj">
+      <h2>요나고공항<small>돗토리현</small></h2>
+      <p class="flight">에어서울, 주 5회</p>
+      <article class="city">
+        <div class="city-head"><h3>요나고·사카이미나토</h3><span class="time">공항에서 25분</span></div>
+        <p class="why">미즈키 시게루 로드에 『게게게의 기타로』 요괴 청동상 170여 개가 서 있어요.</p>
+        <p class="more"><b>겨울</b>11월부터 겨울 대게 철이에요.</p>
+        <p class="more"><b>가는 길</b>요나고역까지 버스 25분, 사카이미나토는 공항역에서 기차 20분</p>
+      </article>
+      <article class="city">
+        <div class="city-head"><h3>마쓰에·이즈모</h3><span class="time">공항에서 45분</span></div>
+        <p class="why">마쓰에성 천수각은 국보예요. 전철로 1시간 가면 이즈모 대사예요.</p>
+        <p class="more"><b>가는 길</b>마쓰에역까지 공항버스 45분</p>
+      </article>
+      <p class="sub">공항에서 1시간 30분 넘게 걸리는 곳</p>
+      <article class="city city--plain">
+        <div class="city-head"><h3>돗토리</h3><span class="time">공항에서 1시간 50분</span></div>
+        <p class="why">돗토리 사구는 동서 16km 모래 언덕이에요. 낙타는 당분간 타고 걷지 못하고 기념사진만 찍어요.</p>
+        <p class="more"><b>가는 길</b>요나고역까지 버스 30분, 특급 1시간 10분</p>
+      </article>
+    </section>
+
+    <section class="airport" id="kmq">
+      <h2>고마쓰공항<small>이시카와현</small></h2>
+      <p class="flight">대한항공, 주 7회</p>
+      <article class="city">
+        <div class="city-head"><h3>가나자와</h3><span class="time">공항에서 40분</span></div>
+        <p class="why">21세기 미술관 수영장 작품은 물 아래에 사람이 서 있는 것처럼 보이고, 아래로 들어가려면 따로 예약해요. 2027년 5월 6일부터 2028년 3월까지는 공사로 문을 닫아요.</p>
+        <p class="more"><b>겨울</b>겐로쿠엔 소나무에 눈 무게를 받치는 줄을 매달아요.</p>
+        <p class="more"><b>가는 길</b>공항버스 40분</p>
+      </article>
+      <article class="city">
+        <div class="city-head"><h3>후쿠이</h3><span class="time">공항에서 1시간</span></div>
+        <p class="why">이치조다니에 전국시대 아사쿠라 가문이 다스린 성하 마을 터가 남아 있어요.</p>
+        <p class="more"><b>겨울</b>11월부터 3월까지 에치젠 대게 철이에요.</p>
+        <p class="more"><b>가는 길</b>공항버스 약 1시간</p>
+      </article>
+      <article class="city">
+        <div class="city-head"><h3>도야마</h3><span class="time">공항에서 1시간 20분</span></div>
+        <p class="why">도야마만 흰새우와 반딧불 오징어, 겨울 방어가 나와요.</p>
+        <p class="more"><b>가는 길</b>가나자와역까지 버스 40분, 신칸센 25분</p>
+      </article>
+      <p class="sub">공항에서 1시간 30분 넘게 걸리는 곳</p>
+      <article class="city city--plain">
+        <div class="city-head"><h3>구로베</h3><span class="time">공항에서 1시간 50분</span></div>
+        <p class="more"><b>겨울</b>트롤리 열차는 12월부터 4월 중순까지 쉬어요.</p>
+        <p class="why">우나즈키에서 게야키다이라까지 20.1km 협곡을 트롤리 열차가 달려요.</p>
+        <p class="more"><b>가는 길</b>가나자와역까지 버스 40분, 신칸센 35분, 지방철도 25분</p>
+      </article>
+      <article class="city city--plain">
+        <div class="city-head"><h3>시라카와고</h3><span class="time">공항에서 2시간</span></div>
+        <p class="why">갓쇼즈쿠리 초가집 59채가 모인 오기마치 마을이에요. 민박에서 하룻밤 묵을 수 있어요.</p>
+        <p class="more"><b>겨울</b>겨울밤 눈 덮인 마을 라이트업은 미리 예약해야 들어가요.</p>
+        <p class="more"><b>가는 길</b>가나자와역까지 버스 40분, 예약제 버스 1시간 15분</p>
+      </article>
+      <article class="city city--plain">
+        <div class="city-head"><h3>다테야마</h3><span class="time">공항에서 2시간 30분</span></div>
+        <p class="more"><b>겨울</b>알펜루트는 11월 30일에 닫고 이듬해 4월 중순에 다시 열어요.</p>
+        <p class="why">해발 2,450m 무로도에서 화산호 미쿠리가이케까지 걸어서 10분이에요.</p>
+        <p class="more"><b>가는 길</b>가나자와역까지 버스 40분, 신칸센 20분, 지방철도 1시간</p>
+      </article>
+      <article class="city city--plain">
+        <div class="city-head"><h3>다카야마</h3><span class="time">공항에서 2시간 55분</span></div>
+        <p class="why">에도 시대 상인 거리 산마치스지가 그대로 남아 있어요.</p>
+        <p class="more"><b>겨울</b>눈 쌓인 옛 거리를 걸어요.</p>
+        <p class="more"><b>가는 길</b>가나자와역까지 버스 40분, 예약제 고속버스 2시간 15분</p>
+      </article>
+    </section>
+
+    <section class="airport" id="kij">
+      <h2>니가타공항<small>니가타현</small></h2>
+      <p class="flight">대한항공, 주 7회</p>
+      <article class="city">
+        <div class="city-head"><h3>니가타</h3><span class="time">공항에서 25분</span></div>
+        <p class="why">양조장 수가 일본 1위인 현이에요. 역 안 폰슈칸에서 사케를 한 잔씩 골라 마셔요.</p>
+        <p class="more"><b>가는 길</b>공항버스 25분</p>
+      </article>
+    </section>
+
+    <section class="airport" id="aoj">
+      <h2>아오모리공항<small>아오모리현</small></h2>
+      <p class="flight">대한항공, 주 5회</p>
+      <article class="city">
+        <div class="city-head"><h3>아오모리·히로사키</h3><span class="time">공항에서 35분</span></div>
+        <p class="why">아오모리 현립미술관에 나라 요시토모의 8.5m 흰 개 아오모리견이 서 있어요. 가까이 가는 바깥 통로는 겨울에 닫아요.</p>
+        <p class="more"><b>겨울</b>핫코다산 눈은 몇 m씩 쌓여요.</p>
+        <p class="more"><b>가는 길</b>아오모리역까지 버스 35분, 히로사키 55분</p>
+      </article>
+    </section>
+
+    <section class="airport" id="sdj">
+      <h2>센다이공항<small>미야기현</small></h2>
+      <p class="flight">아시아나항공 12월 16일까지, 대한항공 12월 18일부터 주 7회, 제주항공 1월 8일부터 주 3회</p>
+      <article class="city">
+        <div class="city-head"><h3>센다이·마쓰시마</h3><span class="time">공항에서 25분</span></div>
+        <p class="why">센다이 근교 마쓰시마만에 크고 작은 섬 260여 개가 떠 있어요.</p>
+        <p class="more"><b>가는 길</b>공항 전철 25분</p>
+      </article>
+      <p class="sub">공항에서 1시간 30분 넘게 걸리는 곳</p>
+      <article class="city city--plain">
+        <div class="city-head"><h3>모리오카·히라이즈미</h3><span class="time">공항에서 1시간 40분</span></div>
+        <p class="why">모리오카 냉면은 1954년 함흥 출신 재일 한국인이 처음 팔았어요.</p>
+        <p class="more"><b>가는 길</b>센다이역까지 전철 25분, 신칸센 40분(히라이즈미는 이치노세키 거쳐 40분)</p>
+      </article>
+      <article class="city city--plain">
+        <div class="city-head"><h3>가쿠노다테·뉴토 온천</h3><span class="time">공항에서 2시간 10분</span></div>
+        <p class="why">뉴토 온천 쓰루노유는 우윳빛 혼욕 노천탕이에요.</p>
+        <p class="more"><b>겨울</b>눈에 파묻힌 노천탕에 들어가요.</p>
+        <p class="more"><b>가는 길</b>센다이역까지 전철 25분, 신칸센 1시간 30분(뉴토 온천은 다자와코역에서 버스 50분)</p>
+      </article>
+      <article class="city city--plain">
+        <div class="city-head"><h3>긴잔 온천·자오</h3><span class="time">공항에서 3시간</span></div>
+        <p class="why">강 양쪽에 다이쇼 시대 목조 료칸이 마주 보고 서 있어요.</p>
+        <p class="more"><b>겨울</b>자오 수빙(스노 몬스터)은 1~2월에 가장 커요.</p>
+        <p class="more"><b>가는 길</b>센다이에서 버스와 기차로 2시간 30분</p>
+      </article>
+    </section>
+
+    <section class="airport" id="fsz">
+      <h2>시즈오카공항<small>시즈오카현</small></h2>
+      <p class="flight">제주항공, 주 14회</p>
+      <article class="city">
+        <div class="city-head"><h3>시즈오카</h3><span class="time">공항에서 50분</span></div>
+        <p class="why">차밭 너머로 후지산이 보이는 언덕이 많아요.</p>
+        <p class="more"><b>겨울</b>구노 해안 길 농원의 돌담 딸기 따기는 12월쯤 시작하고 1~2월이 가장 맛있어요.</p>
+        <p class="more"><b>가는 길</b>시즈오카역까지 공항버스 50분</p>
+      </article>
+      <p class="sub">공항에서 1시간 30분 넘게 걸리는 곳</p>
+      <article class="city city--plain">
+        <div class="city-head"><h3>아타미·이즈</h3><span class="time">공항에서 1시간 40분</span></div>
+        <p class="why">바다를 내려다보는 온천 호텔이 비탈에 모여 있어요.</p>
+        <p class="more"><b>가는 길</b>시즈오카역까지 버스 50분, 신칸센 35분</p>
+      </article>
+    </section>
+
+    <section class="airport" id="hkd">
+      <h2>하코다테공항<small>홋카이도</small></h2>
+      <p class="flight">제주항공 12월 1일~3월 2일, 주 7회</p>
+      <article class="city">
+        <div class="city-head"><h3>하코다테</h3><span class="time">공항에서 20분</span></div>
+        <p class="why">아침 시장에서 직접 낚은 오징어를 회로 먹어요.</p>
+        <p class="more"><b>겨울</b>12월 크리스마스까지 아카렌가 창고 앞 바다에 큰 트리를 띄우고 저녁마다 불꽃을 쏴요.</p>
+        <p class="more"><b>가는 길</b>공항버스 20분</p>
+      </article>
+    </section>
+
+    <section class="airport" id="kkj">
+      <h2>기타큐슈공항<small>후쿠오카현</small></h2>
+      <p class="flight">진에어, 주 7회</p>
+      <p class="sub">다른 공항이 더 가까운 곳</p>
+      <article class="city city--plain">
+        <div class="city-head"><h3>벳푸</h3><span class="time">공항에서 1시간 55분</span></div>
+        <p class="more"><b>가는 길</b>고쿠라역까지 버스 35분, 특급 1시간 15분</p>
+        <p class="more"><a href="#oit">오이타공항</a>에서 가면 55분이에요.</p>
+      </article>
+    </section>
+
+    <section class="airport" id="oit">
+      <h2>오이타공항<small>오이타현</small></h2>
+      <p class="flight">대한항공, 제주항공</p>
+      <article class="city">
+        <div class="city-head"><h3>유후인</h3><span class="time">공항에서 55분</span></div>
+        <p class="why">유후다케 산 아래 료칸 마을이에요. 방에 노천탕 딸린 료칸이 많아요.</p>
+        <p class="more"><b>겨울</b>늦가을부터 겨울까지 공기가 찬 이른 아침이면 긴린코 호수에서 김이 피어올라요.</p>
+        <p class="more"><b>가는 길</b>공항버스 55분</p>
+      </article>
+      <article class="city">
+        <div class="city-head"><h3>벳푸</h3><span class="time">공항에서 55분</span></div>
+        <p class="why">뜨거운 물과 증기, 진흙이 솟는 온천 일곱 곳을 차례로 도는 지옥 순례가 있어요.</p>
+        <p class="more"><b>겨울</b>12월 벳푸 크리스마스 판타지아에 바다 위에서 불꽃을 이틀 동안 하루 8,888발씩 쏴요.</p>
+        <p class="more"><b>가는 길</b>벳푸역까지 공항버스 55분</p>
+      </article>
+    </section>
+
+    <section class="airport" id="kmj">
+      <h2>구마모토공항<small>구마모토현</small></h2>
+      <p class="flight">대한항공, 트리니티항공</p>
+      <article class="city">
+        <div class="city-head"><h3>구마모토</h3><span class="time">공항에서 50분</span></div>
+        <p class="why">구마모토성은 2016년과 2026년 지진에 석축이 무너져 복구 중이고, 천수각은 들어갈 수 있어요.</p>
+        <p class="more"><b>가는 길</b>시내 도리초스지까지 공항버스 50분</p>
+      </article>
+      <article class="city">
+        <div class="city-head"><h3>아소</h3><span class="time">공항에서 1시간</span></div>
+        <p class="why">세계에서 손꼽히게 큰 칼데라 안에 마을과 철도가 들어서 있어요.</p>
+        <p class="more"><b>가는 길</b>렌터카 1시간</p>
+      </article>
+      <p class="sub">공항에서 1시간 30분 넘게 걸리는 곳</p>
+      <article class="city city--plain">
+        <div class="city-head"><h3>다카치호</h3><span class="time">공항에서 2시간</span></div>
+        <p class="why">주상절리 협곡 사이로 보트를 저어 마나이 폭포 앞까지 가요. 보트는 2주 전부터 인터넷으로 예약하고, 예약이 다 차면 당일권이 없어요.</p>
+        <p class="more"><b>가는 길</b>렌터카 2시간, 직행버스 2시간 10분(하루 1편)</p>
+      </article>
+    </section>
+
+    <section class="airport" id="koj">
+      <h2>가고시마공항<small>가고시마현</small></h2>
+      <p class="flight">대한항공, 제주항공, 이스타항공</p>
+      <article class="city">
+        <div class="city-head"><h3>가고시마·이부스키</h3><span class="time">공항에서 40분</span></div>
+        <p class="why">시내에서 배로 15분 가면 지금도 연기를 뿜는 사쿠라지마 화산에 닿아요. 분화 경계 레벨 3이라 산에는 오르지 못해요.</p>
+        <p class="more"><b>가는 길</b>공항버스 40분</p>
+      </article>
+      <p class="sub">공항에서 1시간 30분 넘게 걸리는 곳</p>
+      <article class="city city--plain">
+        <div class="city-head"><h3>야쿠시마</h3><span class="time">공항에서 3시간 30분</span></div>
+        <p class="more"><b>겨울</b>겨울엔 높은 산길에 눈이 쌓여 조몬스기 길이 어려워요.</p>
+        <p class="why">조몬스기까지 산길을 왕복 10시간 걸어요. 3~11월에는 야쿠스기 자연관 앞에서 등산버스를 타고 등산로 입구로 가요.</p>
+        <p class="more"><b>가는 길</b>가고시마항까지 버스 55분, 고속선 1시간 50분~2시간 50분</p>
+      </article>
+    </section>
+
+    <section class="airport" id="kmi">
+      <h2>미야자키공항<small>미야자키현</small></h2>
+      <p class="flight">아시아나항공 12월 16일까지 주 3회, 대한항공 12월 18일부터 주 7회</p>
+      <article class="city">
+        <div class="city-head"><h3>미야자키</h3><span class="time">공항에서 15분</span></div>
+        <p class="why">아오시마 둘레에 빨래판처럼 줄진 바위가 깔려 있어요.</p>
+        <p class="more"><b>겨울</b>겨울에도 낮 기온이 10도대라 바닷길 드라이브를 해요.</p>
+        <p class="more"><b>가는 길</b>공항에서 전철 10분</p>
+      </article>
+    </section>
+
+    <section class="airport" id="hsg">
+      <h2>사가공항<small>사가현</small></h2>
+      <p class="flight">트리니티항공, 주 4회</p>
+      <p class="sub">다른 공항이 더 가까운 곳</p>
+      <article class="city city--plain">
+        <div class="city-head"><h3>다케오·우레시노</h3><span class="time">공항에서 1시간 15분</span></div>
+        <p class="more"><b>가는 길</b>사가역까지 버스 35분, 기차 30분(다케오온센)</p>
+        <p class="more"><a href="#ngs">나가사키공항</a>에서 가면 1시간 10분이에요.</p>
+      </article>
+    </section>
+
+    <section class="airport" id="ngs">
+      <h2>나가사키공항<small>나가사키현</small></h2>
+      <p class="flight">대한항공, 주 4회</p>
+      <article class="city">
+        <div class="city-head"><h3>나가사키</h3><span class="time">공항에서 45분</span></div>
+        <p class="why">노면전차가 다니고 언덕에 1863년 지은 글로버 저택이 남아 있어요.</p>
+        <p class="more"><b>겨울</b>1~2월 랜턴 축제에 차이나타운이 등불로 덮여요.</p>
+        <p class="more"><b>가는 길</b>나가사키역까지 공항버스 45분</p>
+      </article>
+      <article class="city">
+        <div class="city-head"><h3>다케오·우레시노</h3><span class="time">공항에서 1시간 10분</span></div>
+        <p class="why">우레시노 온천물에 두부를 끓이면 녹아서 크림처럼 돼요.</p>
+        <p class="more"><b>겨울</b>1월 하순부터 2월 중순까지 우레시노 온천공원과 상점가에서 앗타카 마쓰리가 열려요.</p>
+        <p class="more"><b>가는 길</b>소노기까지 버스 25분, JR버스 25분(우레시노)</p>
+      </article>
+    </section>
+
+    <section class="airport" id="shi">
+      <h2>미야코(시모지시마)공항<small>오키나와현</small></h2>
+      <p class="flight">진에어, 주 7회</p>
+      <article class="city">
+        <div class="city-head"><h3>미야코지마</h3><span class="time">공항에서 25분</span></div>
+        <p class="why">이라부 대교 아래 바다색을 미야코 블루라고 불러요.</p>
+        <p class="more"><b>가는 길</b>시내까지 택시 25분</p>
+      </article>
+    </section>
+
+    <section class="airport" id="isg">
+      <h2>이시가키공항<small>오키나와현</small></h2>
+      <p class="flight">진에어, 주 7회</p>
+      <article class="city">
+        <div class="city-head"><h3>이시가키·다케토미</h3><span class="time">공항에서 35분</span></div>
+        <p class="why">가비라만 바다를 유리 바닥 배 위에서 봐요.</p>
+        <p class="more"><b>가는 길</b>공항버스 30분</p>
+      </article>
+    </section>
+
+
+  <section class="cta">
+    <h2>다음에 갈 일본 소도시를 찾아요</h2>
+    <p>추천 56곳마다 왜 갈 만한지, 내 출발지에서 어떻게 가는지 적었어요. 사진 한 장 보고 고를 수도 있어요. 다녀오면 도장을 찍어 내 일본 지도를 채워요.</p>
+    <a class="store" href="https://apps.apple.com/app/apple-store/id6829795097?pt=129681187&amp;ct=web&amp;mt=8"><img src="assets/app-store-badge-ko.svg" width="130" height="40" alt="App Store에서 다운로드 하기"></a>
+    <p class="note">지금은 iPhone에서만 받을 수 있어요. 둘러보기는 로그인 없이 할 수 있고, 광고는 없어요.</p>
+  </section>
+
+  <section class="block">
+    <h2>다른 공항에서 출발</h2>
+    <ul class="others">
+      <li><a href="direct-pus.html">부산에서 직항으로 가는 일본 소도시</a></li>
+      <li><a href="direct-cjj.html">청주공항에서 직항으로 가는 일본 소도시</a></li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+<div class="wrap">
+  <nav aria-label="안내 페이지"><a href="./">스탄푸 소개</a><a href="support.html">문의</a><a href="privacy.html">개인정보처리방침</a><a href="terms.html">이용약관</a></nav>
+  <p class="legal">Apple, Apple 로고, iPhone, App Store는 미국과 그 밖의 나라에 등록된 Apple Inc.의 상표예요.</p>
+</div>
+</footer>
+</body>
+</html>

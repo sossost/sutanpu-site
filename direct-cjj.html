@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>청주공항에서 직항으로 가는 일본 소도시 | 스탄푸</title>
+<meta name="description" content="청주공항에서 직항으로 가는 일본 지방 공항 6곳과 가까운 소도시 9곳. 항공사·주간 편수, 공항에서 걸리는 시간과 가는 길. 2026년 11월 1일에 확인한 겨울 시간표(10월 25일~3월 27일) 기준이에요.">
+<link rel="canonical" href="https://sossost.github.io/sutanpu-site/direct-cjj.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="스탄푸">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:url" content="https://sossost.github.io/sutanpu-site/direct-cjj.html">
+<meta property="og:title" content="청주공항에서 직항으로 가는 일본 소도시">
+<meta property="og:description" content="청주공항에서 직항으로 가는 일본 지방 공항 6곳과 가까운 소도시 9곳. 항공사·주간 편수, 공항에서 걸리는 시간과 가는 길. 2026년 11월 1일에 확인한 겨울 시간표(10월 25일~3월 27일) 기준이에요.">
+<meta property="og:image" content="https://sossost.github.io/sutanpu-site/assets/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<!-- tools/gen-direct-pages.mjs가 만든 파일이다. 손으로 고치지 않고 src/data를 고친 뒤 다시 만든다 -->
+<style>
+/* 색은 앱 토큰(src/ui/theme.ts), 간격·글꼴은 공개 사이트 첫 화면(index.html)을 따른다 */
+@font-face{font-family:'Jua';src:url(assets/jua-direct.woff2) format('woff2');font-weight:700;font-display:swap}
+:root{
+  --suki-deep:#D81E3F;--suki-soft:#FFF0F2;--ink:#15161A;--ink-soft:#36383D;--muted:#6A6C72;--line:#ECEEF2;--cloud:#F1F3F6;--link:#1F5FB8;--white:#FFFFFF;
+  --font-display:'Jua',-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif;
+  --font-body:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--white);color:var(--ink);font:17px/1.7 var(--font-body);word-break:keep-all;overflow-wrap:break-word}
+img{display:block;max-width:100%;height:auto}
+a{color:var(--link);text-underline-offset:2px}
+a:focus-visible{outline:2px solid var(--link);outline-offset:3px;border-radius:4px}
+p{margin:0}
+h1,h2,.brand span{font-family:var(--font-display);font-weight:700;letter-spacing:-0.01em}
+.wrap{max-width:720px;margin-inline:auto;padding-inline:20px}
+.brand{display:inline-flex;align-items:center;gap:12px;margin-top:28px;color:var(--ink);text-decoration:none}
+.brand img{width:40px;height:40px;border-radius:22.37%;box-shadow:0 0 0 1px var(--line)}
+.brand span{font-size:22px;line-height:1}
+h1{font-size:32px;line-height:1.3;margin:28px 0 16px;text-wrap:balance}
+.lead{color:var(--ink-soft)}
+.note{margin-top:12px;font-size:14px;line-height:1.6;color:var(--muted)}
+h2{font-size:24px;line-height:1.3;margin:0 0 8px}
+.block{margin-top:48px}
+table{width:100%;border-collapse:collapse;font-size:15px;line-height:1.5}
+th,td{text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+thead th{padding:8px 0;font-size:13px;font-weight:600;color:var(--muted)}
+tbody th{width:40%;font-weight:600}
+tbody th a{display:block;padding:12px 12px 12px 0;color:var(--ink);text-decoration:none}
+tbody th a:hover{text-decoration:underline}
+tbody th small{display:block;font-size:13px;font-weight:400;color:var(--muted)}
+tbody td{padding:12px 0;color:var(--ink-soft)}
+.app-link{display:inline-block;padding:10px 0;font-weight:600}
+.airport{margin-top:48px;padding-top:28px;border-top:1px solid var(--line)}
+.airport h2 small{margin-left:8px;font-family:var(--font-body);font-size:14px;font-weight:400;letter-spacing:0;color:var(--muted)}
+.flight{font-size:15px;line-height:1.6;color:var(--ink-soft)}
+.city{margin-top:16px;padding:16px;border:1px solid var(--line);border-radius:16px}
+.city--plain{border-color:transparent;background:var(--cloud)}
+.city-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 12px}
+.city h3{margin:0;font-size:19px;line-height:1.3;font-weight:700}
+.time{padding:3px 10px;border-radius:999px;background:var(--suki-soft);color:var(--suki-deep);font-size:13px;font-weight:600;white-space:nowrap}
+.city--plain .time{background:var(--white)}
+.why{margin-top:8px;font-size:16px;line-height:1.6;color:var(--ink-soft)}
+.more{margin-top:8px;font-size:14px;line-height:1.6;color:var(--muted)}
+.more b{margin-right:8px;font-weight:600;color:var(--ink-soft)}
+.sub{margin-top:28px;font-size:14px;font-weight:600;color:var(--ink-soft)}
+.empty{margin-top:16px;font-size:15px;color:var(--muted)}
+.cta{margin-top:64px;padding:28px 20px;border-radius:22px;background:var(--suki-soft)}
+.cta p{color:var(--ink-soft)}
+/* App Store 배지: 높이 40px 이상, 둘레에 높이의 1/4 이상 비움 (Apple 마케팅 가이드라인). 한 장에 하나만 둔다 */
+.store{display:inline-block;margin-top:20px;border-radius:9px}
+.store img{height:52px;width:auto}
+.others{margin:8px 0 0;padding:0;list-style:none}
+.others a{display:block;padding:10px 0}
+footer{margin-top:64px;padding:36px 0 48px;border-top:1px solid var(--line);font-size:14px;line-height:1.6;color:var(--muted)}
+footer nav{display:flex;flex-wrap:wrap;gap:0 20px;font-size:15px}
+footer nav a{color:var(--ink);text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+footer nav a:hover{text-decoration:underline}
+.legal{margin-top:20px}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <a class="brand" href="./"><img src="assets/icon-192.png" width="192" height="192" alt=""><span>스탄푸</span></a>
+  <h1>청주공항에서 직항으로 가는 일본 소도시</h1>
+  <p class="lead">이번 겨울 청주공항에서 직항으로 가는 일본 지방 공항은 6곳이에요. 공항마다 가까운 소도시 9곳과 가는 길이에요.</p>
+  <p class="note">2026년 11월 1일에 확인한 겨울 시간표(10월 25일~3월 27일) 기준이에요. 출발 전 항공사에서 다시 확인해 주세요.</p>
+
+  <section class="block">
+    <h2>직항으로 가는 지방 공항 6곳</h2>
+    <table>
+      <thead><tr><th scope="col">공항</th><th scope="col">항공사·주간 편수</th></tr></thead>
+      <tbody>
+        <tr><th scope="row"><a href="#myj">마쓰야마<small>에히메현</small></a></th><td>에어로케이 1월 2일부터, 주 3회</td></tr>
+        <tr><th scope="row"><a href="#hij">히로시마<small>히로시마현</small></a></th><td>에어로케이</td></tr>
+        <tr><th scope="row"><a href="#obo">오비히로<small>홋카이도</small></a></th><td>에어로케이 1월 1일~3월 1일만, 주 4회</td></tr>
+        <tr><th scope="row"><a href="#ibr">이바라키<small>이바라키현</small></a></th><td>에어로케이 12월 19일까지, 주 2회</td></tr>
+        <tr><th scope="row"><a href="#kkj">기타큐슈<small>후쿠오카현</small></a></th><td>에어로케이, 주 7회</td></tr>
+        <tr><th scope="row"><a href="#kmj">구마모토<small>구마모토현</small></a></th><td>에어로케이 12월 23일부터, 주 3회</td></tr>
+      </tbody>
+    </table>
+    <p class="note">주 N회가 안 적힌 항공사는 편수를 확인 못 했어요.</p>
+    <p class="note">대도시 공항(도쿄, 간사이, 후쿠오카, 삿포로, 나고야, 오키나와, 고베) 노선은 빼고 지방 공항만 적었어요.</p>
+  </section>
+  <p class="note">추천 소도시 56곳은 스탄푸 앱에서 더 볼 수 있어요. <a class="app-link" href="https://apps.apple.com/app/apple-store/id6829795097?pt=129681187&amp;ct=web&amp;mt=8">App Store에서 스탄푸 받기</a></p>
+
+    <section class="airport" id="myj">
+      <h2>마쓰야마공항<small>에히메현</small></h2>
+      <p class="flight">에어로케이 1월 2일부터, 주 3회</p>
+      <article class="city">
+        <div class="city-head"><h3>마쓰야마</h3><span class="time">공항에서 15분</span></div>
+        <p class="why">1894년에 지은 목조 공중탕 도고 온천 본관에 들어가요.</p>
+        <p class="more"><b>가는 길</b>공항버스로 마쓰야마역까지 15분, 도고 온천까지 40분</p>
+      </article>
+      <p class="sub">공항에서 1시간 30분 넘게 걸리는 곳</p>
+      <article class="city city--plain">
+        <div class="city-head"><h3>고치</h3><span class="time">공항에서 3시간 5분</span></div>
+        <p class="why">히로메 시장에서 짚불에 바로 구운 가쓰오 다타키를 먹어요.</p>
+        <p class="more"><b>가는 길</b>마쓰야마역까지 버스 15분, 고속버스 2시간 40분(하루 4편)</p>
+      </article>
+    </section>
+
+    <section class="airport" id="hij">
+      <h2>히로시마공항<small>히로시마현</small></h2>
+      <p class="flight">에어로케이</p>
+      <article class="city">
+        <div class="city-head"><h3>오노미치</h3><span class="time">공항에서 1시간 5분</span></div>
+        <p class="why">산비탈 골목을 따라 절 25곳과 고양이 골목이 이어져요.</p>
+        <p class="more"><b>가는 길</b>미하라역까지 버스 40분(하루 5편), 기차 15분</p>
+      </article>
+      <p class="sub">공항에서 1시간 30분 넘게 걸리는 곳</p>
+      <article class="city city--plain">
+        <div class="city-head"><h3>미야지마</h3><span class="time">공항에서 1시간 50분</span></div>
+        <p class="why">밀물 때 이쓰쿠시마 신사 도리이가 바다 위에 서요.</p>
+        <p class="more"><b>겨울</b>굴은 겨울이 제철이에요.</p>
+        <p class="more"><b>가는 길</b>히로시마역까지 버스 50분, 전철과 배 1시간</p>
+      </article>
+    </section>
+
+    <section class="airport" id="obo">
+      <h2>오비히로공항<small>홋카이도</small></h2>
+      <p class="flight">에어로케이 1월 1일~3월 1일만, 주 4회</p>
+      <p class="sub">공항에서 1시간 30분 넘게 걸리는 곳</p>
+      <article class="city city--plain">
+        <div class="city-head"><h3>구시로·아칸</h3><span class="time">공항에서 2시간 30분</span></div>
+        <p class="why">일본에서 가장 넓은 습원에서 두루미를 봐요.</p>
+        <p class="more"><b>겨울</b>두루미는 11월부터 3월까지 겨울 먹이터에 모여요. 먹이 주는 날은 먹이터마다, 해마다 조금씩 달라요.</p>
+        <p class="more"><b>가는 길</b>오비히로역까지 버스 40분, 구시로역까지 특급 1시간 35분</p>
+      </article>
+    </section>
+
+    <section class="airport" id="ibr">
+      <h2>이바라키공항<small>이바라키현</small></h2>
+      <p class="flight">에어로케이 12월 19일까지, 주 2회</p>
+      <p class="empty">이 공항 근처 소도시는 아직 앱에 없어요.</p>
+    </section>
+
+    <section class="airport" id="kkj">
+      <h2>기타큐슈공항<small>후쿠오카현</small></h2>
+      <p class="flight">에어로케이, 주 7회</p>
+      <p class="sub">공항에서 1시간 30분 넘게 걸리는 곳</p>
+      <article class="city city--plain">
+        <div class="city-head"><h3>벳푸</h3><span class="time">공항에서 1시간 55분</span></div>
+        <p class="why">뜨거운 물과 증기, 진흙이 솟는 온천 일곱 곳을 차례로 도는 지옥 순례가 있어요.</p>
+        <p class="more"><b>겨울</b>12월 벳푸 크리스마스 판타지아에 바다 위에서 불꽃을 이틀 동안 하루 8,888발씩 쏴요.</p>
+        <p class="more"><b>가는 길</b>고쿠라역까지 버스 35분, 특급 1시간 15분</p>
+      </article>
+    </section>
+
+    <section class="airport" id="kmj">
+      <h2>구마모토공항<small>구마모토현</small></h2>
+      <p class="flight">에어로케이 12월 23일부터, 주 3회</p>
+      <article class="city">
+        <div class="city-head"><h3>구마모토</h3><span class="time">공항에서 50분</span></div>
+        <p class="why">구마모토성은 2016년과 2026년 지진에 석축이 무너져 복구 중이고, 천수각은 들어갈 수 있어요.</p>
+        <p class="more"><b>가는 길</b>시내 도리초스지까지 공항버스 50분</p>
+      </article>
+      <article class="city">
+        <div class="city-head"><h3>아소</h3><span class="time">공항에서 1시간</span></div>
+        <p class="why">세계에서 손꼽히게 큰 칼데라 안에 마을과 철도가 들어서 있어요.</p>
+        <p class="more"><b>가는 길</b>렌터카 1시간</p>
+      </article>
+      <p class="sub">공항에서 1시간 30분 넘게 걸리는 곳</p>
+      <article class="city city--plain">
+        <div class="city-head"><h3>다카치호</h3><span class="time">공항에서 2시간</span></div>
+        <p class="why">주상절리 협곡 사이로 보트를 저어 마나이 폭포 앞까지 가요. 보트는 2주 전부터 인터넷으로 예약하고, 예약이 다 차면 당일권이 없어요.</p>
+        <p class="more"><b>가는 길</b>렌터카 2시간, 직행버스 2시간 10분(하루 1편)</p>
+      </article>
+    </section>
+
+
+  <section class="cta">
+    <h2>다음에 갈 일본 소도시를 찾아요</h2>
+    <p>추천 56곳마다 왜 갈 만한지, 내 출발지에서 어떻게 가는지 적었어요. 사진 한 장 보고 고를 수도 있어요. 다녀오면 도장을 찍어 내 일본 지도를 채워요.</p>
+    <a class="store" href="https://apps.apple.com/app/apple-store/id6829795097?pt=129681187&amp;ct=web&amp;mt=8"><img src="assets/app-store-badge-ko.svg" width="130" height="40" alt="App Store에서 다운로드 하기"></a>
+    <p class="note">지금은 iPhone에서만 받을 수 있어요. 둘러보기는 로그인 없이 할 수 있고, 광고는 없어요.</p>
+  </section>
+
+  <section class="block">
+    <h2>다른 공항에서 출발</h2>
+    <ul class="others">
+      <li><a href="direct-icn.html">인천에서 직항으로 가는 일본 소도시</a></li>
+      <li><a href="direct-pus.html">부산에서 직항으로 가는 일본 소도시</a></li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+<div class="wrap">
+  <nav aria-label="안내 페이지"><a href="./">스탄푸 소개</a><a href="support.html">문의</a><a href="privacy.html">개인정보처리방침</a><a href="terms.html">이용약관</a></nav>
+  <p class="legal">Apple, Apple 로고, iPhone, App Store는 미국과 그 밖의 나라에 등록된 Apple Inc.의 상표예요.</p>
+</div>
+</footer>
+</body>
+</html>

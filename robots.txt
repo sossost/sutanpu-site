@@ -1,0 +1,4 @@
+# 이 파일은 /sutanpu-site/ 아래에 있어 검색 로봇이 읽지 않는다. 사이트맵은 검색 도구에 직접 낸다
+User-agent: *
+Allow: /
+Sitemap: https://sossost.github.io/sutanpu-site/sitemap.xml
