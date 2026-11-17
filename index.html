@@ -21,15 +21,15 @@
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="preload" href="assets/jua-subset.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/jua-subset.2bbb5e66.woff2" as="font" type="font/woff2" crossorigin>
 <!--
-  손으로 고치는 파일이다. 다만 gen:이름 표시로 감싼 칸(공항 단추, 맛보기 도시, 숫자)은 앱 레포의
+  손으로 고치는 파일이다. 다만 gen:이름 표시로 감싼 칸(공항 단추, 맛보기 도시, 숫자, 스토어 QR)은 앱 레포의
   tools/gen-direct-pages.mjs --index 가 앱 데이터에서 채운다. 그 칸 안은 손으로 고치지 않는다.
   기준: 앱 레포 docs/features/landing-page/01-spec.md '공항별 소도시 랜딩'
 -->
 <style>
 /* 색은 앱 토큰(src/ui/theme.ts), 카드·글자 크기는 직항 페이지(direct-*.html)와 같다 */
-@font-face{font-family:'Jua';src:url(assets/jua-subset.woff2) format('woff2');font-display:swap}
+@font-face{font-family:'Jua';src:url(assets/jua-subset.2bbb5e66.woff2) format('woff2');font-display:swap}
 :root{
   --suki-deep:#D81E3F;--suki-soft:#FFF0F2;--ink:#15161A;--ink-soft:#36383D;--muted:#6A6C72;--line:#ECEEF2;--cloud:#F1F3F6;--link:#1F5FB8;--white:#FFFFFF;
   --space-sm:8px;--space-md:12px;--space-lg:16px;--space-xl:20px;--space-xxl:28px;--space-section:36px;
@@ -99,6 +99,13 @@ h2{font-size:28px;line-height:1.3;margin:0 0 var(--space-sm)}
 /* App Store 배지: 높이 40px 이상, 둘레에 높이의 1/4 이상 비움 (Apple 마케팅 가이드라인). 한 장에 하나만 둔다 */
 .store{display:inline-block;margin-top:var(--space-xl);border-radius:9px}
 .store img{height:52px;width:auto}
+/* 배지 옆 스토어 QR: 마우스로 보는 폭 768px 이상 화면에서만. 폰·태블릿은 배지를 누르면 된다 (앱 레포 landing-page 스펙 'PC용 스토어 QR') */
+.get{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-xl) 32px;margin-top:var(--space-xl)}
+.get .store{margin-top:0}
+.qr{display:none;align-items:center;gap:var(--space-lg)}
+.qr svg{display:block;flex:none;border-radius:8px}
+.qr p{max-width:10em;font-size:14px;line-height:1.6;color:var(--ink-soft)}
+@media (min-width:768px) and (hover:hover) and (pointer:fine){.qr{display:flex}}
 
 footer{margin-top:var(--gap-block);padding:var(--space-section) 0 48px;border-top:1px solid var(--line);font-size:14px;line-height:1.6;color:var(--muted)}
 footer nav{display:flex;flex-wrap:wrap;gap:0 var(--space-xl);font-size:15px}
@@ -201,7 +208,9 @@ footer a{color:var(--muted)}
 
   <section class="cta" aria-labelledby="get">
     <h2 id="get">다음에 갈 일본 소도시를 찾아요</h2>
-    <a class="store" href="https://apps.apple.com/kr/app/id6829795097?pt=129681187&amp;ct=web&amp;mt=8"><img src="assets/app-store-badge-ko.svg" width="130" height="40" alt="App Store에서 다운로드 하기"></a>
+    <div class="get">
+      <a class="store" href="https://apps.apple.com/kr/app/id6829795097?pt=129681187&amp;ct=web&amp;mt=8"><img src="assets/app-store-badge-ko.svg" width="130" height="40" alt="App Store에서 다운로드 하기"></a><!--gen:store-qr--><div class="qr"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 41" width="164" height="164" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h41v41H0z"/><path stroke="#000000" d="M4 4.5h7m4 0h2m1 0h3m1 0h2m2 0h2m2 0h7M4 5.5h1m5 0h1m1 0h1m1 0h1m4 0h1m2 0h3m2 0h1m2 0h1m5 0h1M4 6.5h1m1 0h3m1 0h1m2 0h5m2 0h1m2 0h1m2 0h2m2 0h1m1 0h3m1 0h1M4 7.5h1m1 0h3m1 0h1m2 0h1m1 0h1m1 0h3m1 0h2m1 0h3m3 0h1m1 0h3m1 0h1M4 8.5h1m1 0h3m1 0h1m1 0h2m3 0h1m3 0h4m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1M4 9.5h1m5 0h1m2 0h4m1 0h6m1 0h1m1 0h2m1 0h1m5 0h1M4 10.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M13 11.5h1m1 0h1m1 0h2m1 0h3m1 0h4M4 12.5h1m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1m1 0h1m3 0h2m1 0h2m2 0h1m3 0h1m2 0h1M4 13.5h1m1 0h1m1 0h2m1 0h2m3 0h2m2 0h2m2 0h1m1 0h1m2 0h3m3 0h2M7 14.5h1m2 0h9m1 0h3m3 0h1m3 0h2m2 0h1m1 0h1M4 15.5h2m1 0h1m1 0h1m4 0h2m2 0h2m2 0h1m2 0h1m3 0h1m2 0h1m2 0h1M7 16.5h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h1m5 0h1m1 0h1m2 0h2m1 0h2m2 0h1M4 17.5h6m2 0h1m2 0h2m2 0h2m1 0h1m1 0h6m3 0h2m1 0h1M7 18.5h6m1 0h1m1 0h6m2 0h1m1 0h2m1 0h1m1 0h1m3 0h2M5 19.5h2m1 0h1m3 0h2m1 0h1m1 0h1m2 0h3m2 0h1m4 0h1m2 0h3M4 20.5h5m1 0h1m2 0h2m2 0h2m2 0h1m2 0h2m3 0h2M4 21.5h1m2 0h3m1 0h1m1 0h6m1 0h2m2 0h1m1 0h1m1 0h4M4 22.5h3m1 0h1m1 0h1m5 0h1m4 0h1m2 0h3m1 0h1m1 0h1m3 0h1m1 0h1M4 23.5h2m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1m2 0h1m1 0h2m1 0h1m2 0h1m2 0h3m2 0h1M4 24.5h1m2 0h5m3 0h4m1 0h2m1 0h4m1 0h2m1 0h3m1 0h2M8 25.5h2m1 0h1m2 0h1m1 0h3m1 0h1m1 0h4m1 0h2m1 0h1m1 0h5M4 26.5h1m5 0h1m4 0h3m2 0h5m1 0h1m3 0h2m3 0h2M5 27.5h1m2 0h2m7 0h2m2 0h3m1 0h1m2 0h1m3 0h1m1 0h2M4 28.5h1m1 0h2m1 0h5m1 0h1m2 0h1m1 0h2m2 0h2m2 0h6m2 0h1M12 29.5h2m2 0h1m1 0h1m1 0h3m2 0h1m2 0h1m3 0h2m1 0h2M4 30.5h7m3 0h1m1 0h3m2 0h1m5 0h2m1 0h1m1 0h1m1 0h3M4 31.5h1m5 0h1m2 0h1m1 0h3m2 0h2m1 0h2m3 0h1m3 0h1M4 32.5h1m1 0h3m1 0h1m1 0h1m2 0h1m3 0h2m3 0h3m1 0h6M4 33.5h1m1 0h3m1 0h1m4 0h3m3 0h4m1 0h2m4 0h1m2 0h2M4 34.5h1m1 0h3m1 0h1m1 0h1m1 0h5m1 0h3m5 0h2m2 0h1m1 0h1m1 0h1M4 35.5h1m5 0h1m2 0h4m3 0h2m3 0h1m1 0h1m4 0h1m1 0h2M4 36.5h7m1 0h1m1 0h1m2 0h2m1 0h6m2 0h2m2 0h5"/></svg><p>iPhone 카메라로 비추면 App Store 링크가 떠요</p></div><!--/gen:store-qr-->
+    </div>
     <p class="note">지금은 iPhone에서만 받을 수 있어요. Android 앱은 준비 중이에요. 둘러보기는 로그인 없이 할 수 있고, 광고는 없어요.</p>
   </section>
 </div>
