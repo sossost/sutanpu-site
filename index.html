@@ -21,15 +21,15 @@
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="preload" href="assets/jua-subset.2bbb5e66.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/jua-subset.75f315d0.woff2" as="font" type="font/woff2" crossorigin>
 <!--
-  손으로 고치는 파일이다. 다만 gen:이름 표시로 감싼 칸(공항 단추, 맛보기 도시, 숫자, 스토어 QR)은 앱 레포의
+  손으로 고치는 파일이다. 다만 gen:이름 표시로 감싼 칸(공항 단추, 맛보기 도시와 그 사진 출처, 숫자, 스토어 QR)은 앱 레포의
   tools/gen-direct-pages.mjs --index 가 앱 데이터에서 채운다. 그 칸 안은 손으로 고치지 않는다.
   기준: 앱 레포 docs/features/landing-page/01-spec.md '공항별 소도시 랜딩'
 -->
 <style>
 /* 색은 앱 토큰(src/ui/theme.ts), 카드·글자 크기는 직항 페이지(direct-*.html)와 같다 */
-@font-face{font-family:'Jua';src:url(assets/jua-subset.2bbb5e66.woff2) format('woff2');font-display:swap}
+@font-face{font-family:'Jua';src:url(assets/jua-subset.75f315d0.woff2) format('woff2');font-display:swap}
 :root{
   --suki-deep:#D81E3F;--suki-soft:#FFF0F2;--ink:#15161A;--ink-soft:#36383D;--muted:#6A6C72;--line:#ECEEF2;--cloud:#F1F3F6;--link:#1F5FB8;--white:#FFFFFF;
   --space-sm:8px;--space-md:12px;--space-lg:16px;--space-xl:20px;--space-xxl:28px;--space-section:36px;
@@ -78,6 +78,9 @@ h2{font-size:28px;line-height:1.3;margin:0 0 var(--space-sm)}
 /* 맛보기 도시: 직항 페이지의 도시 카드와 같은 모양 */
 .cities{display:grid;gap:var(--space-lg);margin-top:var(--space-xl)}
 .city{padding:var(--space-lg);border:1px solid var(--line);border-radius:var(--radius-md)}
+/* 맛보기 카드 사진: 카드 위쪽에 가장자리까지 16:9. 세 장이 같은 비율로 잘린다(앱 레포 landing-page 스펙 '맛보기 카드 사진') */
+.city--photo{overflow:hidden}
+.city-photo{display:block;width:calc(100% + 2*var(--space-lg));max-width:none;aspect-ratio:16/9;height:auto;margin:calc(-1*var(--space-lg)) calc(-1*var(--space-lg)) var(--space-lg);object-fit:cover;background:var(--cloud)}
 .city-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px var(--space-md)}
 .city h3{margin:0;font-family:var(--font-body);font-size:19px;line-height:1.3;font-weight:700;letter-spacing:0}
 .time{padding:3px 10px;border-radius:999px;background:var(--suki-soft);color:var(--suki-deep);font-size:13px;font-weight:600;white-space:nowrap}
@@ -155,19 +158,22 @@ footer a{color:var(--muted)}
     <h2 id="near">공항에서 가까운 소도시</h2>
     <p class="block-lead"><!--gen:teaser-rule-->인천, 김해, 청주 중 두 곳 이상에서 직항으로 가고, 이번 겨울에 가기 좋은 곳이에요.<!--/gen:teaser-rule--></p>
     <div class="cities"><!--gen:teaser-->
-      <article class="city">
+      <article class="city city--photo">
+        <img class="city-photo" src="assets/cities/matsuyama.aaf3fff4.webp" width="800" height="450" loading="lazy" alt="도고 온천 본관">
         <div class="city-head"><h3>마쓰야마</h3><span class="time">공항에서 15분</span></div>
         <p class="why">1894년에 지은 목조 공중탕 도고 온천 본관에 들어가요.</p>
         <p class="more"><b>가는 길</b>공항버스로 마쓰야마역까지 15분, 도고 온천까지 40분</p>
         <p class="more"><b>직항</b>인천, 김해, 청주에서 마쓰야마공항으로</p>
       </article>
-      <article class="city">
+      <article class="city city--photo">
+        <img class="city-photo" src="assets/cities/kagoshima.1196eff7.webp" width="800" height="450" loading="lazy" alt="센간엔에서 본 사쿠라지마">
         <div class="city-head"><h3>가고시마·이부스키</h3><span class="time">공항에서 40분</span></div>
         <p class="why">사쿠라지마 화산은 시내에서 배로 15분이에요. 지금도 연기가 나고, 분화 경계 레벨 3이라 산에는 못 올라가요.</p>
         <p class="more"><b>가는 길</b>공항버스 40분</p>
         <p class="more"><b>직항</b>인천, 김해에서 가고시마공항으로</p>
       </article>
-      <article class="city">
+      <article class="city city--photo">
+        <img class="city-photo" src="assets/cities/takamatsu.0eb6eed0.webp" width="800" height="450" loading="lazy" alt="리쓰린 공원 남호">
         <div class="city-head"><h3>다카마쓰</h3><span class="time">공항에서 45분</span></div>
         <p class="why">셀프 우동집이 아침부터 열고 한 그릇에 몇백 엔이에요.</p>
         <p class="more"><b>가는 길</b>공항버스 45분</p>
@@ -219,14 +225,18 @@ footer a{color:var(--muted)}
 <footer>
 <div class="wrap">
   <nav aria-label="안내 페이지"><a href="support.html">문의</a><a href="privacy.html">개인정보처리방침</a><a href="terms.html">이용약관</a><a href="delete-account.html">계정 삭제</a></nav>
-  <h2>화면 속 지도와 사진</h2>
-  <ul>
+  <h2>지도와 사진 출처</h2>
+  <ul><!--gen:teaser-credits-->
+    <li>도고 온천 본관 사진(마쓰야마 카드): Japanexperterna.se, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/wiki/File:Dogo_onsen_honkan_long_exposure.jpg">위키미디어 공용</a></li>
+    <li>센간엔에서 본 사쿠라지마 사진(가고시마·이부스키 카드): Hiroaki Kikuchi, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>, <a href="https://commons.wikimedia.org/wiki/File:Isoteien-sakurajima2.jpg">위키미디어 공용</a></li>
+    <li>리쓰린 공원 남호 사진(다카마쓰 카드): ブルーノ・プラス, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>, <a href="https://commons.wikimedia.org/wiki/File:Ritsurin_garden_kangetsu_bridge.jpg">위키미디어 공용</a></li>
+    <!--/gen:teaser-credits-->
     <li>일본 지도: Map of Japan © Victor Cazanave, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, <a href="https://github.com/VictorCazanave/svg-maps/tree/master/packages/japan">GitHub</a>. 오키나와 자리를 옮기고 색을 칠했어요.</li>
     <li>벳푸 우미지고쿠 사진: 663highland, <a href="https://creativecommons.org/licenses/by/2.5/">CC BY 2.5</a>, <a href="https://commons.wikimedia.org/wiki/File:Beppu_Umi-jigoku04n4272.jpg">위키미디어 공용</a></li>
     <li>비에이 눈 덮인 언덕 사진: Soumei Baba, <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>, <a href="https://www.flickr.com/photos/43302713@N04/23490802821">Flickr</a></li>
     <li>청의 호수 사진: Syuzo Tsushima, <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>, <a href="https://www.flickr.com/photos/62061761@N03/9613987798">Flickr</a></li>
   </ul>
-  <p class="note">사진은 앱 화면에 맞춰 잘라 썼어요.</p>
+  <p class="note">도시 카드 사진은 가로로 잘라 줄였고, 앱 화면 속 사진은 화면에 맞춰 잘라 썼어요.</p>
   <p class="legal">Apple, Apple 로고, iPhone, App Store는 미국과 그 밖의 나라에 등록된 Apple Inc.의 상표예요.</p>
 </div>
 </footer>
