@@ -3,30 +3,35 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>스탄푸 | 일본 도시마다 찍는 여행 도장</title>
-<meta name="description" content="다녀온 일본 도시에 도장을 찍어 내 일본 지도를 채워요. 도시 1,719곳을 찾을 수 있고, 다음 여행지는 취향 질문 7개로 골라 드려요.">
+<title>내 공항에서 직항으로 가는 일본 소도시 | 스탄푸</title>
+<meta name="description" content="인천, 김해(부산), 청주에서 직항으로 가는 일본 지방 공항과 공항에서 가까운 소도시를 공항별로 모았어요. 도시마다 공항에서 몇 분인지, 어떻게 가는지 적었어요.">
 <link rel="canonical" href="https://sossost.github.io/sutanpu-site/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="스탄푸">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:url" content="https://sossost.github.io/sutanpu-site/">
-<meta property="og:title" content="스탄푸 | 일본 도시마다 찍는 여행 도장">
-<meta property="og:description" content="다녀온 일본 도시에 도장을 찍어 내 일본 지도를 채워요. 도시 1,719곳을 찾을 수 있고, 다음 여행지는 취향 질문 7개로 골라 드려요.">
+<meta property="og:title" content="내 공항에서 직항으로 가는 일본 소도시 | 스탄푸">
+<meta property="og:description" content="인천, 김해(부산), 청주에서 직항으로 가는 일본 지방 공항과 공항에서 가까운 소도시를 공항별로 모았어요.">
 <meta property="og:image" content="https://sossost.github.io/sutanpu-site/assets/og-image.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="스탄푸 앱 아이콘과 빨간 도장 그림">
+<meta property="og:image:alt" content="스탄푸 앱 아이콘과 '내 공항에서 직항으로 가는 일본 소도시' 글자, 빨간 도장 그림">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preload" href="assets/jua-subset.woff2" as="font" type="font/woff2" crossorigin>
+<!--
+  손으로 고치는 파일이다. 다만 gen:이름 표시로 감싼 칸(공항 단추, 맛보기 도시, 숫자)은 앱 레포의
+  tools/gen-direct-pages.mjs --index 가 앱 데이터에서 채운다. 그 칸 안은 손으로 고치지 않는다.
+  기준: 앱 레포 docs/features/landing-page/01-spec.md '공항별 소도시 랜딩'
+-->
 <style>
-/* 색·간격은 앱 토큰(src/ui/theme.ts)을 따른다. 쪽 사이 간격만 웹에서 더했다 */
+/* 색은 앱 토큰(src/ui/theme.ts), 카드·글자 크기는 직항 페이지(direct-*.html)와 같다 */
 @font-face{font-family:'Jua';src:url(assets/jua-subset.woff2) format('woff2');font-display:swap}
 :root{
-  --suki:#FF3D5A;--suki-soft:#FFF0F2;--ink:#15161A;--ink-soft:#36383D;--muted:#6A6C72;--line:#ECEEF2;--cloud:#F1F3F6;--link:#1F5FB8;--white:#FFFFFF;
+  --suki-deep:#D81E3F;--suki-soft:#FFF0F2;--ink:#15161A;--ink-soft:#36383D;--muted:#6A6C72;--line:#ECEEF2;--cloud:#F1F3F6;--link:#1F5FB8;--white:#FFFFFF;
   --space-sm:8px;--space-md:12px;--space-lg:16px;--space-xl:20px;--space-xxl:28px;--space-section:36px;
   --gap-block:64px;
   --radius-md:16px;--radius-lg:22px;
@@ -43,142 +48,176 @@ a{color:var(--link);text-underline-offset:2px}
 a:focus-visible{outline:2px solid var(--link);outline-offset:3px;border-radius:4px}
 h1,h2,h3{font-family:var(--font-display);font-weight:400;letter-spacing:-0.01em}
 p{margin:0}
+ul{margin:0;padding:0;list-style:none}
 .wrap{max-width:1080px;margin-inline:auto;padding-inline:var(--space-xl)}
 
-.hero{display:grid;gap:var(--space-section);padding-top:var(--space-xxl)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:var(--space-lg);padding-top:var(--space-xxl)}
 .brand{display:flex;align-items:center;gap:var(--space-md);margin:0}
-.brand img{width:48px;height:48px;border-radius:22.37%;box-shadow:0 0 0 1px var(--line)}
-.brand span{font-family:var(--font-display);font-size:24px;line-height:1}
-h1{font-size:40px;line-height:1.25;margin:var(--space-xxl) 0 var(--space-lg)}
-.lead{color:var(--ink-soft)}
-/* App Store 배지: 높이 40px 이상, 둘레에 높이의 1/4 이상 비움 (Apple 마케팅 가이드라인) */
-.store{display:inline-block;margin-top:var(--space-xxl);border-radius:9px}
-.store:focus-visible{border-radius:9px}
-.store img{height:52px;width:auto}
-.note{margin-top:var(--space-lg);font-size:14px;line-height:1.6;color:var(--muted)}
+.brand img{width:40px;height:40px;border-radius:22.37%;box-shadow:0 0 0 1px var(--line)}
+.brand span{font-family:var(--font-display);font-size:22px;line-height:1}
+.top-link{display:inline-flex;align-items:center;min-height:var(--min-touch);font-size:15px;font-weight:600}
 
-.shot{margin:0;padding:var(--space-section) var(--space-xl);border-radius:var(--radius-lg);background:var(--cloud);display:flex;justify-content:center}
-.shot--accent{background:var(--suki-soft)}
+h1{font-size:34px;line-height:1.3;margin:var(--space-xxl) 0 var(--space-md);text-wrap:balance}
+.lead{color:var(--ink-soft)}
+.note{margin-top:var(--space-md);font-size:14px;line-height:1.6;color:var(--muted)}
+
+/* 주 행동: 출발 공항 고르기. 맛보기 카드(테두리)와 갈리게 채운 칸으로 둔다 */
+.picks{display:grid;gap:var(--space-md);margin-top:var(--space-xxl)}
+.pick{position:relative;display:grid;gap:2px;min-height:76px;padding:var(--space-lg) 56px var(--space-lg) var(--space-xl);border-radius:var(--radius-md);background:var(--suki-soft);color:var(--ink);text-decoration:none;transition:box-shadow .15s}
+.pick::after{content:"";position:absolute;right:24px;top:50%;width:10px;height:10px;border-top:2.5px solid var(--suki-deep);border-right:2.5px solid var(--suki-deep);transform:translateY(-50%) rotate(45deg)}
+.pick:hover{box-shadow:inset 0 0 0 2px var(--suki-deep)}
+.pick:focus-visible{outline:2px solid var(--suki-deep);outline-offset:3px;border-radius:var(--radius-md)}
+.pick-name{font-family:var(--font-display);font-size:26px;line-height:1.25}
+.pick-sub{font-size:15px;line-height:1.5;color:var(--ink-soft)}
+.pick-cities{font-size:14px;line-height:1.5;color:var(--muted)}
+
+.block{margin-top:var(--gap-block)}
+h2{font-size:28px;line-height:1.3;margin:0 0 var(--space-sm)}
+.block-lead{color:var(--ink-soft)}
+
+/* 맛보기 도시: 직항 페이지의 도시 카드와 같은 모양 */
+.cities{display:grid;gap:var(--space-lg);margin-top:var(--space-xl)}
+.city{padding:var(--space-lg);border:1px solid var(--line);border-radius:var(--radius-md)}
+.city-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px var(--space-md)}
+.city h3{margin:0;font-family:var(--font-body);font-size:19px;line-height:1.3;font-weight:700;letter-spacing:0}
+.time{padding:3px 10px;border-radius:999px;background:var(--suki-soft);color:var(--suki-deep);font-size:13px;font-weight:600;white-space:nowrap}
+.why{margin-top:var(--space-sm);font-size:16px;line-height:1.6;color:var(--ink-soft)}
+.more{margin-top:var(--space-sm);font-size:14px;line-height:1.6;color:var(--muted)}
+.more b{margin-right:var(--space-sm);font-weight:600;color:var(--ink-soft)}
+
+/* 앱으로 갈 이유: 글 → 화면 */
+.features{display:grid;gap:48px;margin-top:var(--space-xxl)}
+.feature{display:grid;gap:var(--space-xl);align-content:start}
+.feature h3{font-size:22px;line-height:1.3;margin:0 0 var(--space-sm)}
+.feature p{color:var(--ink-soft)}
+.shot{margin:0;padding:var(--space-xxl) var(--space-xl);border-radius:var(--radius-lg);background:var(--cloud);display:flex;justify-content:center}
 /* 아이폰 화면 모서리 비율(가로의 13.7%)을 세로 비율로 바꿔 둥근 모서리가 크기를 따라가게 한다 */
 .shot img{width:var(--shot-width);border-radius:13.7%/6.3%;box-shadow:0 0 0 1px rgba(21,22,26,.06),0 16px 40px rgba(21,22,26,.12)}
 
-.features{display:grid;gap:var(--gap-block);margin-top:var(--gap-block)}
-.feature{display:grid;gap:var(--space-xxl);align-content:start}
-h2{font-size:28px;line-height:1.3;margin:0 0 var(--space-md)}
-.feature p{color:var(--ink-soft)}
-
-.notebook{display:grid;gap:var(--space-xxl);margin-top:var(--gap-block)}
-.notebook p{color:var(--ink-soft)}
-/* 화면 두 장을 나란히. 폰에서는 칸 폭을 반씩 나누고, 넓으면 다른 캡처와 같은 폭에서 멈춘다 */
-.shot--pair{gap:var(--space-md);align-items:flex-start}
-.shot--pair img{width:min(var(--shot-width),calc(50% - var(--space-md) / 2))}
-.card{padding:var(--space-xl);border:1px solid var(--line);border-radius:var(--radius-md)}
-h3{font-size:22px;line-height:1.3;margin:0 0 var(--space-sm)}
+.cta{margin-top:var(--gap-block);padding:var(--space-xxl) var(--space-xl);border-radius:var(--radius-lg);background:var(--suki-soft)}
+.cta h2{margin-bottom:0}
+/* App Store 배지: 높이 40px 이상, 둘레에 높이의 1/4 이상 비움 (Apple 마케팅 가이드라인). 한 장에 하나만 둔다 */
+.store{display:inline-block;margin-top:var(--space-xl);border-radius:9px}
+.store img{height:52px;width:auto}
 
 footer{margin-top:var(--gap-block);padding:var(--space-section) 0 48px;border-top:1px solid var(--line);font-size:14px;line-height:1.6;color:var(--muted)}
 footer nav{display:flex;flex-wrap:wrap;gap:0 var(--space-xl);font-size:15px}
 footer nav a{color:var(--ink);text-decoration:none;min-height:var(--min-touch);display:inline-flex;align-items:center}
 footer nav a:hover{text-decoration:underline}
 footer h2{font-family:var(--font-body);font-size:14px;font-weight:600;letter-spacing:0;color:var(--ink-soft);margin:var(--space-xxl) 0 var(--space-sm)}
-footer ul{margin:0;padding:0;list-style:none;display:grid;gap:var(--space-sm)}
+footer ul{display:grid;gap:var(--space-sm)}
 footer a{color:var(--muted)}
 .legal{margin-top:var(--space-xxl)}
 
 @media (min-width:900px){
   :root{--gap-block:96px}
   .wrap{padding-inline:40px}
-  .hero{grid-template-columns:minmax(0,1fr) 400px;gap:72px;align-items:center;padding-top:72px}
-  .hero .shot img{width:300px}
-  /* 900px 근처에서 글 칸이 좁아 제목이 세 줄로 갈라지지 않게 폭에 따라 줄인다 */
-  h1{font-size:clamp(40px,4.4vw,56px)}
-  .lead{font-size:19px}
-  /* 넓은 화면에서는 기능 셋을 한 줄에 놓고 화면을 위로 올려 높이를 맞춘다 */
+  h1{font-size:48px;margin-top:56px}
+  .lead{font-size:19px;max-width:40em}
+  .picks{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-lg)}
+  .pick{min-height:96px;padding:var(--space-xl) 56px var(--space-xl) var(--space-xxl)}
+  .pick-name{font-size:30px}
+  h2{font-size:32px}
+  .cities{grid-template-columns:repeat(3,minmax(0,1fr))}
   .features{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-xxl)}
-  .feature{gap:var(--space-xl)}
   .feature .shot{order:-1}
-  /* 여행 수첩: 글과 기록 카드는 왼쪽, 화면 두 장은 오른쪽 */
-  .notebook{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"text shot" "card shot";column-gap:72px;row-gap:var(--space-xl);align-content:center}
-  .notebook .text{grid-area:text;align-self:end}
-  .notebook .shot{grid-area:shot}
-  /* auto 칸에서는 % 폭이 풀리지 않아 캡처 폭을 직접 준다. 900px 근처에서는 글 칸이 남도록 줄인다 */
-  .notebook .shot img{width:clamp(180px,19vw,var(--shot-width))}
-  .notebook .card{grid-area:card;align-self:start;padding:var(--space-xxl)}
-  h3{font-size:24px}
+  .cta{padding:40px}
 }
 </style>
 </head>
 <body>
 <main>
-<section class="hero wrap">
-  <div>
-    <p class="brand"><img src="assets/icon-192.png" width="192" height="192" alt=""><span>스탄푸</span></p>
-    <h1>일본 도시마다 찍는<br>여행 도장</h1>
-    <p class="lead">다녀온 일본 도시에 도장을 찍어 내 일본 지도를 채워요. 도시 1,719곳을 찾을 수 있고, 다음 여행지는 취향 질문 7개로 골라 드려요.</p>
-    <a class="store" href="https://apps.apple.com/kr/app/%EC%8A%A4%ED%83%84%ED%91%B8/id6829795097"><img src="assets/app-store-badge-ko.svg" width="130" height="40" alt="App Store에서 다운로드 하기"></a>
-    <p class="note">지금은 iPhone에서만 받을 수 있어요. 둘러보기는 로그인 없이 할 수 있고, 광고는 없어요.</p>
-  </div>
-  <figure class="shot shot--accent"><img src="assets/screens/home.webp" width="750" height="1631" fetchpriority="high" alt="가 본 현 21곳이 빨갛게 칠해진 일본 지도와 도장 찍기 단추가 있는 첫 화면"></figure>
+<div class="top wrap">
+  <p class="brand"><img src="assets/icon-192.png" width="192" height="192" alt=""><span>스탄푸</span></p>
+  <a class="top-link" href="https://apps.apple.com/kr/app/id6829795097?pt=129681187&amp;ct=web&amp;mt=8">앱 받기</a>
+</div>
+
+<section class="hero wrap" aria-labelledby="title">
+  <h1 id="title">내 공항에서 직항으로 가는 일본 소도시</h1>
+  <p class="lead">이번 겨울 직항이 있는 일본 지방 공항과 그 근처 소도시를 출발 공항별로 모았어요.</p>
+  <ul class="picks" aria-label="출발 공항"><!--gen:picker-->
+      <li><a class="pick" href="direct-icn.html"><span class="pick-name">인천</span><span class="pick-sub">지방 공항 21곳, 소도시 40곳</span><span class="pick-cities">마쓰야마, 미야자키, 하코다테</span></a></li>
+      <li><a class="pick" href="direct-pus.html"><span class="pick-name">김해(부산)</span><span class="pick-sub">지방 공항 6곳, 소도시 13곳</span><span class="pick-cities">마쓰야마, 가고시마·이부스키, 다카마쓰</span></a></li>
+      <li><a class="pick" href="direct-cjj.html"><span class="pick-name">청주</span><span class="pick-sub">지방 공항 6곳, 소도시 9곳</span><span class="pick-cities">마쓰야마, 구마모토, 오노미치</span></a></li>
+    <!--/gen:picker--></ul>
+  <p class="note"><!--gen:season-->2026년 11월 1일에 확인한 겨울 시간표(10월 25일⁠~⁠3월 27일) 기준이에요.<!--/gen:season--> 출발 전 항공사에서 다시 확인해 주세요.</p>
 </section>
 
 <div class="wrap">
-  <div class="features">
-    <section class="feature">
-      <div class="text">
-        <h2>도장</h2>
-        <p>시·정·촌 1,719곳을 이름으로 찾아 도장을 찍어요. 찍은 날짜가 함께 남고, 가 본 현은 지도에 색이 칠해져요.</p>
-      </div>
-      <figure class="shot"><img src="assets/screens/stamps.webp" width="750" height="1631" loading="lazy" alt="지방과 현별로 찍은 도장이 날짜와 함께 모인 도장 도감 화면"></figure>
-    </section>
+  <section class="block" aria-labelledby="near">
+    <h2 id="near">공항에서 가까운 소도시</h2>
+    <p class="block-lead"><!--gen:teaser-rule-->인천, 김해, 청주 중 두 곳 이상에서 직항으로 가고, 이번 겨울에 가기 좋은 곳이에요.<!--/gen:teaser-rule--></p>
+    <div class="cities"><!--gen:teaser-->
+      <article class="city">
+        <div class="city-head"><h3>마쓰야마</h3><span class="time">공항에서 15분</span></div>
+        <p class="why">1894년에 지은 목조 공중탕 도고 온천 본관에 들어가요.</p>
+        <p class="more"><b>가는 길</b>공항버스로 마쓰야마역까지 15분, 도고 온천까지 40분</p>
+        <p class="more"><b>직항</b>인천, 김해, 청주에서 마쓰야마공항으로</p>
+      </article>
+      <article class="city">
+        <div class="city-head"><h3>가고시마·이부스키</h3><span class="time">공항에서 40분</span></div>
+        <p class="why">사쿠라지마 화산은 시내에서 배로 15분이에요. 지금도 연기가 나고, 분화 경계 레벨 3이라 산에는 못 올라가요.</p>
+        <p class="more"><b>가는 길</b>공항버스 40분</p>
+        <p class="more"><b>직항</b>인천, 김해에서 가고시마공항으로</p>
+      </article>
+      <article class="city">
+        <div class="city-head"><h3>다카마쓰</h3><span class="time">공항에서 45분</span></div>
+        <p class="why">셀프 우동집이 아침부터 열고 한 그릇에 몇백 엔이에요.</p>
+        <p class="more"><b>가는 길</b>공항버스 45분</p>
+        <p class="more"><b>직항</b>인천, 김해에서 다카마쓰공항으로</p>
+      </article>
+    <!--/gen:teaser--></div>
+  </section>
 
-    <section class="feature">
-      <div class="text">
-        <h2>다음 여행지</h2>
-        <p>소도시 56곳을 추천해요. 질문 7개에 답하면 취향에 맞는 세 곳을 골라 주고, 온천·먹거리 같은 주제로도 볼 수 있어요.</p>
-      </div>
-      <figure class="shot"><img src="assets/screens/find.webp" width="750" height="1631" loading="lazy" alt="온천, 옛 골목, 성·절·정원처럼 하고 싶은 걸 세 개까지 고르는 질문 화면"></figure>
-    </section>
+  <section class="block" aria-labelledby="app">
+    <h2 id="app">앱에서 더 할 수 있는 것</h2>
+    <p class="block-lead">추천 소도시 <!--gen:cities-->56<!--/gen:cities-->곳은 앱에서 볼 수 있어요.</p>
+    <div class="features">
+      <section class="feature">
+        <div class="text">
+          <h3>가고 싶어요</h3>
+          <p>도시마다 갈 이유와 가는 길이 있어요. 마음에 든 곳은 ‘가고 싶어요’로 모아 둬요.</p>
+        </div>
+        <figure class="shot"><img src="assets/screens/want.webp" width="750" height="1631" loading="lazy" alt="벳푸 페이지. 온천 증기가 오르는 사진 아래 가고 싶어요 단추와, 인천에서 오이타 직항으로 가는 길이 있어요"></figure>
+      </section>
 
-    <section class="feature">
-      <div class="text">
-        <h2>도시 페이지</h2>
-        <p>도시 1,719곳 모두 소개가 있어요. 볼거리, 먹거리, 사진은 도시마다 양이 달라요. 내용은 공식 관광 사이트 같은 출처를 확인해 썼어요.</p>
-      </div>
-      <figure class="shot"><img src="assets/screens/city.webp" width="750" height="1631" loading="lazy" alt="마쓰모토성 사진 아래 도장과 도시 소개가 있는 마쓰모토 도시 페이지"></figure>
-    </section>
-  </div>
+      <section class="feature">
+        <div class="text">
+          <h3>큰 도시에서 더 갈 곳</h3>
+          <p><!--gen:hubs-->후쿠오카, 오사카, 도쿄, 삿포로<!--/gen:hubs--> 가세요? 근교 <!--gen:hub-places-->43<!--/gen:hub-places-->곳과 가는 길이 있어요.</p>
+        </div>
+        <figure class="shot"><img src="assets/screens/hub.webp" width="750" height="1631" loading="lazy" alt="비에이 페이지. 눈 덮인 언덕 사진 아래 삿포로에서 특급으로 가는 길과 청의 호수 사진이 있어요"></figure>
+      </section>
 
-  <!-- 기록은 앱의 여행 수첩 탭 안에 있어 이 칸에 함께 둔다 -->
-  <section class="notebook">
-    <div class="text">
-      <h2>여행 수첩</h2>
-      <p>여행 일본어, 긴급 연락, 교통카드, 면세, 입국 준비를 정리했어요. 일본어 문장은 소리로 들을 수 있어요.</p>
+      <section class="feature">
+        <div class="text">
+          <h3>다녀오면 도장</h3>
+          <p>다녀온 도시에 도장을 찍으면 가 본 현이 지도에 칠해져요. 시·정·촌 <!--gen:municipalities-->1,719<!--/gen:municipalities-->곳에 찍을 수 있어요.</p>
+        </div>
+        <figure class="shot"><img src="assets/screens/stamp.webp" width="750" height="1631" loading="lazy" alt="가 본 현이 빨갛게 칠해진 일본 지도와 다녀온 도시에 도장 찍기 단추가 있는 도장 탭"></figure>
+      </section>
     </div>
-    <figure class="shot shot--pair">
-      <img src="assets/screens/tips.webp" width="750" height="1631" loading="lazy" alt="여행 중에와 떠나기 전에로 나눠 여행 일본어, 긴급 연락, 교통카드, 면세, 입국 준비 등이 모인 여행 꿀팁 목록">
-      <img src="assets/screens/phrases.webp" width="750" height="1631" loading="lazy" alt="식당에 들어갈 때 쓰는 일본어 문장마다 한국어 뜻, 읽는 법, 소리 듣기 단추가 있는 여행 일본어 화면">
-    </figure>
-    <section class="card">
-      <h3>기록</h3>
-      <p>사진과 한 줄을 도시에 남겨요. 원할 때만 다녀온 사람들에 공개돼요.</p>
-    </section>
+  </section>
+
+  <section class="cta" aria-labelledby="get">
+    <h2 id="get">다음에 갈 일본 소도시를 찾아요</h2>
+    <a class="store" href="https://apps.apple.com/kr/app/id6829795097?pt=129681187&amp;ct=web&amp;mt=8"><img src="assets/app-store-badge-ko.svg" width="130" height="40" alt="App Store에서 다운로드 하기"></a>
+    <p class="note">지금은 iPhone에서만 받을 수 있어요. Android 앱은 준비 중이에요. 둘러보기는 로그인 없이 할 수 있고, 광고는 없어요.</p>
   </section>
 </div>
 </main>
 
 <footer>
 <div class="wrap">
-  <nav aria-label="안내 페이지"><a href="support.html">문의</a><a href="privacy.html">개인정보처리방침</a><a href="terms.html">이용약관</a></nav>
-  <h2>한국 공항에서 직항으로 가는 일본 소도시</h2>
-  <ul>
-    <li><a href="direct-icn.html">인천 출발</a></li>
-    <li><a href="direct-pus.html">부산(김해) 출발</a></li>
-    <li><a href="direct-cjj.html">청주 출발</a></li>
-  </ul>
+  <nav aria-label="안내 페이지"><a href="support.html">문의</a><a href="privacy.html">개인정보처리방침</a><a href="terms.html">이용약관</a><a href="delete-account.html">계정 삭제</a></nav>
   <h2>화면 속 지도와 사진</h2>
   <ul>
     <li>일본 지도: Map of Japan © Victor Cazanave, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, <a href="https://github.com/VictorCazanave/svg-maps/tree/master/packages/japan">GitHub</a>. 오키나와 자리를 옮기고 색을 칠했어요.</li>
-    <li>마쓰모토성 사진: Balon Greyjoy, <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, <a href="https://commons.wikimedia.org/wiki/File:20190706_Matsumoto_Castle-8.jpg">위키미디어 공용</a></li>
+    <li>벳푸 우미지고쿠 사진: 663highland, <a href="https://creativecommons.org/licenses/by/2.5/">CC BY 2.5</a>, <a href="https://commons.wikimedia.org/wiki/File:Beppu_Umi-jigoku04n4272.jpg">위키미디어 공용</a></li>
+    <li>비에이 눈 덮인 언덕 사진: Soumei Baba, <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>, <a href="https://www.flickr.com/photos/43302713@N04/23490802821">Flickr</a></li>
+    <li>청의 호수 사진: Syuzo Tsushima, <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>, <a href="https://www.flickr.com/photos/62061761@N03/9613987798">Flickr</a></li>
   </ul>
+  <p class="note">사진은 앱 화면에 맞춰 잘라 썼어요.</p>
   <p class="legal">Apple, Apple 로고, iPhone, App Store는 미국과 그 밖의 나라에 등록된 Apple Inc.의 상표예요.</p>
 </div>
 </footer>
