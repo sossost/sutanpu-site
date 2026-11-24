@@ -101,7 +101,10 @@ h2{font-size:28px;line-height:1.3;margin:0 0 var(--space-sm)}
 .cta h2{margin-bottom:0}
 /* App Store 배지: 높이 40px 이상, 둘레에 높이의 1/4 이상 비움 (Apple 마케팅 가이드라인). 한 장에 하나만 둔다 */
 .store{display:inline-block;margin-top:var(--space-xl);border-radius:9px}
-.store img{height:52px;width:auto}
+.store img{height:44px;width:auto}
+/* Google Play 배지: 공식 그림의 위아래 투명 여백(250 중 58)을 빼고 보이는 높이를 App Store 배지(44px)와 맞춘다. 그림은 고치지 않는다 (Google Play 배지 가이드라인) */
+.store.play img{height:57px;margin:-7px 0}
+.badges{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
 /* 배지 옆 스토어 QR: 마우스로 보는 폭 768px 이상 화면에서만. 폰·태블릿은 배지를 누르면 된다 (앱 레포 landing-page 스펙 'PC용 스토어 QR') */
 .get{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-xl) 32px;margin-top:var(--space-xl)}
 .get .store{margin-top:0}
@@ -139,14 +142,14 @@ footer a{color:var(--muted)}
 <main>
 <div class="top wrap">
   <p class="brand"><img src="assets/icon-192.png" width="192" height="192" alt=""><span>스탄푸</span></p>
-  <a class="top-link" href="https://apps.apple.com/kr/app/id6829795097?pt=129681187&amp;ct=web&amp;mt=8">앱 받기</a>
+  <a class="top-link" href="#get">앱 받기</a>
 </div>
 
 <section class="hero wrap" aria-labelledby="title">
   <h1 id="title">내 공항에서 직항으로 가는 일본 소도시</h1>
   <p class="lead">이번 겨울 직항이 있는 일본 지방 공항과 그 근처 소도시를 출발 공항별로 모았어요.</p>
   <ul class="picks" aria-label="출발 공항"><!--gen:picker-->
-      <li><a class="pick" href="direct-icn.html"><span class="pick-name">인천</span><span class="pick-sub">지방 공항 21곳, 소도시 40곳</span><span class="pick-cities">마쓰야마, 미야자키, 하코다테</span></a></li>
+      <li><a class="pick" href="direct-icn.html"><span class="pick-name">인천</span><span class="pick-sub">지방 공항 21곳, 소도시 40곳</span><span class="pick-cities">미야자키, 마쓰야마, 하코다테</span></a></li>
       <li><a class="pick" href="direct-pus.html"><span class="pick-name">김해(부산)</span><span class="pick-sub">지방 공항 6곳, 소도시 13곳</span><span class="pick-cities">마쓰야마, 가고시마·이부스키, 다카마쓰</span></a></li>
       <li><a class="pick" href="direct-cjj.html"><span class="pick-name">청주</span><span class="pick-sub">지방 공항 6곳, 소도시 9곳</span><span class="pick-cities">마쓰야마, 구마모토, 오노미치</span></a></li>
     <!--/gen:picker--></ul>
@@ -197,7 +200,7 @@ footer a{color:var(--muted)}
       <section class="feature">
         <div class="text">
           <h3>큰 도시에서 더 갈 곳</h3>
-          <p><!--gen:hubs-->후쿠오카, 오사카, 도쿄, 삿포로<!--/gen:hubs--> 가세요? 근교 <!--gen:hub-places-->43<!--/gen:hub-places-->곳과 가는 길이 있어요.</p>
+          <p><!--gen:hubs-->후쿠오카, 오사카, 도쿄, 삿포로, 나고야<!--/gen:hubs--> 가세요? 근교 <!--gen:hub-places-->60<!--/gen:hub-places-->곳과 가는 길이 있어요.</p>
         </div>
         <figure class="shot"><img src="assets/screens/hub.webp" width="750" height="1631" loading="lazy" alt="비에이 페이지. 눈 덮인 언덕 사진 아래 삿포로에서 특급으로 가는 길과 청의 호수 사진이 있어요"></figure>
       </section>
@@ -215,9 +218,9 @@ footer a{color:var(--muted)}
   <section class="cta" aria-labelledby="get">
     <h2 id="get">다음에 갈 일본 소도시를 찾아요</h2>
     <div class="get">
-      <a class="store" href="https://apps.apple.com/kr/app/id6829795097?pt=129681187&amp;ct=web&amp;mt=8"><img src="assets/app-store-badge-ko.svg" width="130" height="40" alt="App Store에서 다운로드 하기"></a><!--gen:store-qr--><div class="qr"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 41" width="164" height="164" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h41v41H0z"/><path stroke="#000000" d="M4 4.5h7m4 0h2m1 0h3m1 0h2m2 0h2m2 0h7M4 5.5h1m5 0h1m1 0h1m1 0h1m4 0h1m2 0h3m2 0h1m2 0h1m5 0h1M4 6.5h1m1 0h3m1 0h1m2 0h5m2 0h1m2 0h1m2 0h2m2 0h1m1 0h3m1 0h1M4 7.5h1m1 0h3m1 0h1m2 0h1m1 0h1m1 0h3m1 0h2m1 0h3m3 0h1m1 0h3m1 0h1M4 8.5h1m1 0h3m1 0h1m1 0h2m3 0h1m3 0h4m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1M4 9.5h1m5 0h1m2 0h4m1 0h6m1 0h1m1 0h2m1 0h1m5 0h1M4 10.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M13 11.5h1m1 0h1m1 0h2m1 0h3m1 0h4M4 12.5h1m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1m1 0h1m3 0h2m1 0h2m2 0h1m3 0h1m2 0h1M4 13.5h1m1 0h1m1 0h2m1 0h2m3 0h2m2 0h2m2 0h1m1 0h1m2 0h3m3 0h2M7 14.5h1m2 0h9m1 0h3m3 0h1m3 0h2m2 0h1m1 0h1M4 15.5h2m1 0h1m1 0h1m4 0h2m2 0h2m2 0h1m2 0h1m3 0h1m2 0h1m2 0h1M7 16.5h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h1m5 0h1m1 0h1m2 0h2m1 0h2m2 0h1M4 17.5h6m2 0h1m2 0h2m2 0h2m1 0h1m1 0h6m3 0h2m1 0h1M7 18.5h6m1 0h1m1 0h6m2 0h1m1 0h2m1 0h1m1 0h1m3 0h2M5 19.5h2m1 0h1m3 0h2m1 0h1m1 0h1m2 0h3m2 0h1m4 0h1m2 0h3M4 20.5h5m1 0h1m2 0h2m2 0h2m2 0h1m2 0h2m3 0h2M4 21.5h1m2 0h3m1 0h1m1 0h6m1 0h2m2 0h1m1 0h1m1 0h4M4 22.5h3m1 0h1m1 0h1m5 0h1m4 0h1m2 0h3m1 0h1m1 0h1m3 0h1m1 0h1M4 23.5h2m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1m2 0h1m1 0h2m1 0h1m2 0h1m2 0h3m2 0h1M4 24.5h1m2 0h5m3 0h4m1 0h2m1 0h4m1 0h2m1 0h3m1 0h2M8 25.5h2m1 0h1m2 0h1m1 0h3m1 0h1m1 0h4m1 0h2m1 0h1m1 0h5M4 26.5h1m5 0h1m4 0h3m2 0h5m1 0h1m3 0h2m3 0h2M5 27.5h1m2 0h2m7 0h2m2 0h3m1 0h1m2 0h1m3 0h1m1 0h2M4 28.5h1m1 0h2m1 0h5m1 0h1m2 0h1m1 0h2m2 0h2m2 0h6m2 0h1M12 29.5h2m2 0h1m1 0h1m1 0h3m2 0h1m2 0h1m3 0h2m1 0h2M4 30.5h7m3 0h1m1 0h3m2 0h1m5 0h2m1 0h1m1 0h1m1 0h3M4 31.5h1m5 0h1m2 0h1m1 0h3m2 0h2m1 0h2m3 0h1m3 0h1M4 32.5h1m1 0h3m1 0h1m1 0h1m2 0h1m3 0h2m3 0h3m1 0h6M4 33.5h1m1 0h3m1 0h1m4 0h3m3 0h4m1 0h2m4 0h1m2 0h2M4 34.5h1m1 0h3m1 0h1m1 0h1m1 0h5m1 0h3m5 0h2m2 0h1m1 0h1m1 0h1M4 35.5h1m5 0h1m2 0h4m3 0h2m3 0h1m1 0h1m4 0h1m1 0h2M4 36.5h7m1 0h1m1 0h1m2 0h2m1 0h6m2 0h2m2 0h5"/></svg><p>iPhone 카메라로 비추면 App Store 링크가 떠요</p></div><!--/gen:store-qr-->
+      <span class="badges"><a class="store" href="https://apps.apple.com/kr/app/id6829795097?pt=129681187&amp;ct=web&amp;mt=8"><img src="assets/app-store-badge-ko.svg" width="130" height="40" alt="App Store에서 다운로드 하기"></a><a class="store play" href="https://play.google.com/store/apps/details?id=com.sossost.sutanpu&amp;referrer=utm_source%3Dweb%26utm_medium%3Dsite"><img src="assets/google-play-badge-ko.png" width="646" height="250" alt="Google Play에서 다운로드"></a></span><!--gen:store-qr--><div class="qr"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 41" width="164" height="164" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h41v41H0z"/><path stroke="#000000" d="M4 4.5h7m4 0h2m1 0h3m1 0h2m2 0h2m2 0h7M4 5.5h1m5 0h1m1 0h1m1 0h1m4 0h1m2 0h3m2 0h1m2 0h1m5 0h1M4 6.5h1m1 0h3m1 0h1m2 0h5m2 0h1m2 0h1m2 0h2m2 0h1m1 0h3m1 0h1M4 7.5h1m1 0h3m1 0h1m2 0h1m1 0h1m1 0h3m1 0h2m1 0h3m3 0h1m1 0h3m1 0h1M4 8.5h1m1 0h3m1 0h1m1 0h2m3 0h1m3 0h4m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1M4 9.5h1m5 0h1m2 0h4m1 0h6m1 0h1m1 0h2m1 0h1m5 0h1M4 10.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M13 11.5h1m1 0h1m1 0h2m1 0h3m1 0h4M4 12.5h1m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1m1 0h1m3 0h2m1 0h2m2 0h1m3 0h1m2 0h1M4 13.5h1m1 0h1m1 0h2m1 0h2m3 0h2m2 0h2m2 0h1m1 0h1m2 0h3m3 0h2M7 14.5h1m2 0h9m1 0h3m3 0h1m3 0h2m2 0h1m1 0h1M4 15.5h2m1 0h1m1 0h1m4 0h2m2 0h2m2 0h1m2 0h1m3 0h1m2 0h1m2 0h1M7 16.5h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h1m5 0h1m1 0h1m2 0h2m1 0h2m2 0h1M4 17.5h6m2 0h1m2 0h2m2 0h2m1 0h1m1 0h6m3 0h2m1 0h1M7 18.5h6m1 0h1m1 0h6m2 0h1m1 0h2m1 0h1m1 0h1m3 0h2M5 19.5h2m1 0h1m3 0h2m1 0h1m1 0h1m2 0h3m2 0h1m4 0h1m2 0h3M4 20.5h5m1 0h1m2 0h2m2 0h2m2 0h1m2 0h2m3 0h2M4 21.5h1m2 0h3m1 0h1m1 0h6m1 0h2m2 0h1m1 0h1m1 0h4M4 22.5h3m1 0h1m1 0h1m5 0h1m4 0h1m2 0h3m1 0h1m1 0h1m3 0h1m1 0h1M4 23.5h2m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1m2 0h1m1 0h2m1 0h1m2 0h1m2 0h3m2 0h1M4 24.5h1m2 0h5m3 0h4m1 0h2m1 0h4m1 0h2m1 0h3m1 0h2M8 25.5h2m1 0h1m2 0h1m1 0h3m1 0h1m1 0h4m1 0h2m1 0h1m1 0h5M4 26.5h1m5 0h1m4 0h3m2 0h5m1 0h1m3 0h2m3 0h2M5 27.5h1m2 0h2m7 0h2m2 0h3m1 0h1m2 0h1m3 0h1m1 0h2M4 28.5h1m1 0h2m1 0h5m1 0h1m2 0h1m1 0h2m2 0h2m2 0h6m2 0h1M12 29.5h2m2 0h1m1 0h1m1 0h3m2 0h1m2 0h1m3 0h2m1 0h2M4 30.5h7m3 0h1m1 0h3m2 0h1m5 0h2m1 0h1m1 0h1m1 0h3M4 31.5h1m5 0h1m2 0h1m1 0h3m2 0h2m1 0h2m3 0h1m3 0h1M4 32.5h1m1 0h3m1 0h1m1 0h1m2 0h1m3 0h2m3 0h3m1 0h6M4 33.5h1m1 0h3m1 0h1m4 0h3m3 0h4m1 0h2m4 0h1m2 0h2M4 34.5h1m1 0h3m1 0h1m1 0h1m1 0h5m1 0h3m5 0h2m2 0h1m1 0h1m1 0h1M4 35.5h1m5 0h1m2 0h4m3 0h2m3 0h1m1 0h1m4 0h1m1 0h2M4 36.5h7m1 0h1m1 0h1m2 0h2m1 0h6m2 0h2m2 0h5"/></svg><p>iPhone 카메라로 비추면 App Store 링크가 떠요</p></div><!--/gen:store-qr-->
     </div>
-    <p class="note">지금은 iPhone에서만 받을 수 있어요. Android 앱은 준비 중이에요. 둘러보기는 로그인 없이 할 수 있고, 광고는 없어요.</p>
+    <p class="note">iPhone과 Android에서 받을 수 있어요. 둘러보기는 로그인 없이 할 수 있고, 광고는 없어요.</p>
   </section>
 </div>
 </main>
@@ -237,7 +240,7 @@ footer a{color:var(--muted)}
     <li>청의 호수 사진: Syuzo Tsushima, <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>, <a href="https://www.flickr.com/photos/62061761@N03/9613987798">Flickr</a></li>
   </ul>
   <p class="note">도시 카드 사진은 가로로 잘라 줄였고, 앱 화면 속 사진은 화면에 맞춰 잘라 썼어요.</p>
-  <p class="legal">Apple, Apple 로고, iPhone, App Store는 미국과 그 밖의 나라에 등록된 Apple Inc.의 상표예요.</p>
+  <p class="legal">Apple, Apple 로고, iPhone, App Store는 미국과 그 밖의 나라에 등록된 Apple Inc.의 상표예요. Google Play와 Google Play 로고는 Google LLC의 상표예요.</p>
 </div>
 </footer>
 </body>
