@@ -1,7 +1,8 @@
 // 공개 사이트의 페이지 조회와 누른 것을 앱과 같은 PostHog 프로젝트에 센다. 기준은 ../01-spec.md '방문 집계'.
-// 쿠키·localStorage·sessionStorage에 아무것도 남기지 않는다(persistence: memory + disable_persistence).
-// 그래서 페이지를 열 때마다 새 임의 ID가 생기고, 다른 페이지로 넘어가면 같은 사람으로 이어지지 않는다.
-// 페이지 사이는 ct로 잇는다: 주소에 ct가 없으면 같은 사이트의 앞 페이지 주소에서 ct를 읽는다.
+// 쿠키·localStorage·sessionStorage에 아무것도 남기지 않는다(cookieless_mode: 'always').
+// 같은 방문자는 PostHog 서버가 하루마다 바뀌는 비밀값으로 IP·User-Agent·사이트를 해시해 가린다(프로젝트 설정 'Enable cookieless tracking').
+// 그래서 같은 날 페이지를 넘어가도 한 방문자로 이어지고, 다음 날이면 다른 방문자가 된다.
+// 광고 이름은 ct로 잇는다: 주소에 ct가 없으면 같은 사이트의 앞 페이지 주소에서 ct를 읽는다.
 // 웹 이벤트는 이름이 'web.'으로 시작하고 platform: 'web'을 달아 앱 이벤트와 나눈다.
 // 누른 것은 HTML의 data-track(이벤트 이름)과 data-airport·data-city·data-store(속성)로 정한다. 생성기와 첫 화면 원본이 붙인다.
 (function () {
@@ -66,9 +67,10 @@
   }
 
   // PostHog 기본 속성 중 버리는 것. 들어온 주소 전체와 그 안의 광고 클릭 ID($session_entry_fbclid 같은)를 따로 싣는 칸,
-  // 메타 광고 클릭 값($fbc), 전체 User-Agent(브라우저·OS는 $browser·$os로 남는다), 사람 속성
+  // 메타 광고 클릭 값($fbc), 사람 속성. $raw_user_agent는 서버가 방문자 해시를 만드는 데 써야 해서 남긴다(없으면 버려진다).
+  // 서버가 해시를 만든 뒤 $ip와 함께 지우고 저장하지 않는다
   const DROPPED_PREFIXES = ['$session_entry_', '$initial_'];
-  const DROPPED_PROPERTIES = ['$fbc', '$raw_user_agent', '$set', '$set_once'];
+  const DROPPED_PROPERTIES = ['$fbc', '$set', '$set_once'];
 
   function isKeptProperty(key) {
     if (DROPPED_PROPERTIES.includes(key)) return false;
@@ -101,7 +103,9 @@
   window.posthog.init(PROJECT_KEY, {
     api_host: API_HOST,
     defaults: '2026-08-30',
-    // 저장하지 않는다. 쿠키 배너가 필요 없는 상태를 지킨다
+    // 브라우저에 아무것도 저장하지 않고 방문자 구분은 서버 해시에 맡긴다(https://posthog.com/docs/libraries/js/config).
+    // 'always'는 opt-in·opt-out을 보지 않아 '추적 안 함'은 위에서 먼저 멈춘다
+    cookieless_mode: 'always',
     persistence: 'memory',
     disable_persistence: true,
     // 위에서 이미 멈추지만 PostHog 쪽에도 같은 뜻을 남긴다. 저장소를 안 써 끄기 선택을 기억할 수 없어 '추적 안 함'을 거부 방법으로 둔다
