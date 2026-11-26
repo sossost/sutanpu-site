@@ -20,4 +20,4 @@ node tools/gen-direct-pages.mjs --site ~/sutanpu-site
 docs/features/landing-page/source/build-site-assets.sh ~/sutanpu-site --landing-only
 ```
 
-첫 화면과 직항 페이지, 글꼴, 공유 이미지를 같은 세트로 배포합니다. 제목 글자가 바뀌면 부분집합 글꼴의 이름도 바뀝니다.
+첫 화면과 직항 페이지, 글꼴, 공유 이미지를 같은 세트로 배포합니다. `assets/store-ct.js`(스토어 링크에 `?ct=` 넘기기)와 `assets/analytics.js`(쿠키 없는 PostHog 방문 집계)도 앱 저장소의 `docs/features/landing-page/source/`에서 복사합니다. 제목 글자가 바뀌면 부분집합 글꼴의 이름도 바뀝니다.
