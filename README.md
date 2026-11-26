@@ -9,6 +9,8 @@
 - https://sossost.github.io/sutanpu-site/delete-account.html
 - https://sossost.github.io/sutanpu-site/direct-icn.html · direct-pus.html · direct-cjj.html (공항별 직항 소도시)
 
+같은 내용을 Vercel(`https://sutanpu-site.vercel.app/`, 팀 `sossost-s-team`의 프로젝트 `sutanpu-site`)에도 냅니다. 이 레포에 연결돼 있어 `main`에 push하면 두 곳이 같이 바뀝니다. 다른 브랜치 push는 Vercel 프리뷰 배포가 됩니다. 이미 쓰는 주소(광고, 프로필, 스토어, `canonical`)는 github.io입니다.
+
 `terms`·`privacy`·`support`·`delete-account.html`은 앱 레포의 약관에서 생성합니다(`pnpm gen:legal-site`). 여기서 직접 고치지 않습니다.
 
 `index.html`과 `direct-*.html`은 앱 저장소에서 만듭니다. 첫 화면 디자인과 문구는 앱 저장소의 `docs/features/landing-page/source/index.template.html`에서 고칩니다. 공항, 도시, 운항 기간, 이동 시간과 사진 출처는 앱 데이터에서 가져옵니다.
@@ -20,4 +22,4 @@ node tools/gen-direct-pages.mjs --site ~/sutanpu-site
 docs/features/landing-page/source/build-site-assets.sh ~/sutanpu-site --landing-only
 ```
 
-첫 화면과 직항 페이지, 글꼴, 공유 이미지를 같은 세트로 배포합니다. `assets/store-ct.js`(스토어 링크에 `?ct=` 넘기기)와 `assets/analytics.js`(쿠키 없는 PostHog 방문 집계)도 앱 저장소의 `docs/features/landing-page/source/`에서 복사합니다. 제목 글자가 바뀌면 부분집합 글꼴의 이름도 바뀝니다.
+첫 화면과 직항 페이지, 글꼴, 공유 이미지를 같은 세트로 배포합니다. `assets/store-ct.js`(스토어 링크에 `?ct=` 넘기기)와 `assets/analytics.js`(쿠키 없는 PostHog 방문 집계, Vercel 사본에서는 Vercel Web Analytics도)도 앱 저장소의 `docs/features/landing-page/source/`에서 복사합니다. 제목 글자가 바뀌면 부분집합 글꼴의 이름도 바뀝니다.

@@ -12,6 +12,16 @@
   // '$' 없이 남기는 속성: PostHog가 받는 데 필요한 둘과 우리가 붙이는 것. 이 밖(utm_*, fbclid 같은 광고 클릭 ID)은 보내기 전에 버린다
   const PLAIN_PROPERTIES = ['token', 'distinct_id', 'platform', 'page', 'ct', 'ct_from', 'airport', 'city', 'store'];
   const TRACKED_DATA = ['airport', 'city', 'store'];
+  // Vercel 사본에서만 Vercel Web Analytics를 함께 쓴다. github.io에는 /_vercel/insights가 없어 불러오지 않는다
+  const VERCEL_HOST_SUFFIX = '.vercel.app';
+  const VERCEL_SCRIPT = '/_vercel/insights/script.js';
+  // Vercel 커스텀 이벤트는 Pro에서 속성 둘까지다(https://vercel.com/docs/analytics/limits-and-pricing). 이벤트마다 고른 둘
+  const VERCEL_EVENT_PROPERTIES = {
+    'web.airport_pick': ['airport', 'ct'],
+    'web.route_open': ['airport', 'city'],
+    'web.get_jump': ['ct'],
+    'web.store_open': ['store', 'ct'],
+  };
 
   /** '…/sutanpu-site/' → index, '…/direct-icn.html' → direct-icn */
   function pageOf(pathname) {
@@ -104,7 +114,41 @@
     before_send: beforeSend,
   });
 
+  /** 브라우저의 '추적 안 함'. PostHog는 respect_dnt로 스스로 보지만 Vercel 스크립트에는 그런 설정이 없어 여기서 본다 */
+  function isDoNotTrack() {
+    const value = navigator.doNotTrack ?? window.doNotTrack;
+    return value === '1' || value === 'yes';
+  }
+
+  /** Vercel 사본이면 Web Analytics 스크립트를 붙인다. 주소의 광고 클릭 ID는 PostHog와 같이 지운다(문서 quickstart·redacting-sensitive-data) */
+  function startVercelAnalytics() {
+    if (!window.location.hostname.endsWith(VERCEL_HOST_SUFFIX) || isDoNotTrack()) return false;
+    window.va =
+      window.va ||
+      function () {
+        (window.vaq = window.vaq || []).push(arguments);
+      };
+    window.va('beforeSend', function (event) {
+      const url = withoutTrackingQuery(event.url);
+      return url == null ? null : { ...event, url };
+    });
+    const script = document.createElement('script');
+    script.defer = true;
+    script.src = VERCEL_SCRIPT;
+    document.head.appendChild(script);
+    return true;
+  }
+
+  /** PostHog와 같은 클릭을 Vercel 커스텀 이벤트로도 센다. 속성은 이벤트마다 정한 둘만 */
+  function trackVercelEvent(name, properties) {
+    const keys = VERCEL_EVENT_PROPERTIES[name];
+    if (keys == null) return;
+    const data = Object.fromEntries(keys.map((key) => [key, properties[key] ?? null]));
+    window.va('event', { name, data });
+  }
+
   const context = campaignContext();
+  const hasVercelAnalytics = startVercelAnalytics();
   // $geoip_disable: IP로 나라·도시·우편번호·좌표를 붙이지 않는다(앱과 같다). 한국에서 왔는지는 $timezone·$browser_language로 본다
   window.posthog.register({
     platform: 'web',
@@ -128,6 +172,7 @@
         if (value != null) properties[name] = value;
       });
       window.posthog.capture(eventName, properties, { transport: 'sendBeacon', send_instantly: true });
+      if (hasVercelAnalytics) trackVercelEvent(eventName, { ...properties, ct: context.ct });
     },
     true,
   );
