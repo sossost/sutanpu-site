@@ -84,6 +84,14 @@
     return { ...event, properties, $set: undefined, $set_once: undefined };
   }
 
+  /** 브라우저의 '추적 안 함'. 켜져 있으면 PostHog·Vercel 스크립트를 받지도 않는다 */
+  function isDoNotTrack() {
+    const value = navigator.doNotTrack ?? window.doNotTrack;
+    return value === '1' || value === 'yes';
+  }
+
+  if (isDoNotTrack()) return;
+
   // PostHog 웹 스니펫 그대로(https://posthog.com/docs/libraries/js, 2026-11-26 확인)
   /* eslint-disable */
   !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],Object.defineProperty(u,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e}}),Object.defineProperty(u.people,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+".people (stub)"}}),o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagResult isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
@@ -96,7 +104,7 @@
     // 저장하지 않는다. 쿠키 배너가 필요 없는 상태를 지킨다
     persistence: 'memory',
     disable_persistence: true,
-    // 브라우저의 '추적 안 함'을 켜면 아무것도 보내지 않는다. 저장소를 안 써 끄기 선택을 기억할 수 없어 이걸 거부 방법으로 둔다
+    // 위에서 이미 멈추지만 PostHog 쪽에도 같은 뜻을 남긴다. 저장소를 안 써 끄기 선택을 기억할 수 없어 '추적 안 함'을 거부 방법으로 둔다
     respect_dnt: true,
     // 사람 프로필을 만들지 않는다(앱과 같다)
     person_profiles: 'never',
@@ -114,15 +122,9 @@
     before_send: beforeSend,
   });
 
-  /** 브라우저의 '추적 안 함'. PostHog는 respect_dnt로 스스로 보지만 Vercel 스크립트에는 그런 설정이 없어 여기서 본다 */
-  function isDoNotTrack() {
-    const value = navigator.doNotTrack ?? window.doNotTrack;
-    return value === '1' || value === 'yes';
-  }
-
   /** Vercel 사본이면 Web Analytics 스크립트를 붙인다. 주소의 광고 클릭 ID는 PostHog와 같이 지운다(문서 quickstart·redacting-sensitive-data) */
   function startVercelAnalytics() {
-    if (!window.location.hostname.endsWith(VERCEL_HOST_SUFFIX) || isDoNotTrack()) return false;
+    if (!window.location.hostname.endsWith(VERCEL_HOST_SUFFIX)) return false;
     window.va =
       window.va ||
       function () {
