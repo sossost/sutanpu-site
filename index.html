@@ -21,10 +21,10 @@
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="preload" href="assets/jua-subset.b9cb573f.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/jua-subset.d727e03b.woff2" as="font" type="font/woff2" crossorigin>
 <!-- tools/gen-direct-pages.mjs --site로 생성한다. 화면 원본은 앱 저장소의 docs/features/landing-page/source/index.template.html에 있다. -->
 <style>
-@font-face{font-family:Jua;src:url(assets/jua-subset.b9cb573f.woff2) format('woff2');font-display:swap}
+@font-face{font-family:Jua;src:url(assets/jua-subset.d727e03b.woff2) format('woff2');font-display:swap}
 :root{
   --ink:#15161A;--ink-soft:#36383D;--muted:#6A6C72;--line:#ECEEF2;--cloud:#F1F3F6;
   --white:#FFFFFF;--suki-deep:#D81E3F;--suki-soft:#FFF0F2;--link:#1F5FB8;
@@ -49,6 +49,12 @@ ul{margin:0;padding:0;list-style:none}
 .brand img{width:36px;height:36px;border-radius:22%;box-shadow:0 0 0 1px var(--line)}
 .top-link{display:inline-flex;align-items:center;min-height:var(--tap);font-size:14px;font-weight:700;color:var(--ink-soft)}
 
+.bridge{margin:6px 0 26px;padding:22px 18px 20px;border-radius:20px;background:var(--suki-soft)}
+.bridge[hidden]{display:none}
+.bridge h2{font-size:clamp(27px,7.6vw,44px);line-height:1.16}
+.bridge h2 span{display:block}
+.bridge p{margin-top:8px;color:var(--ink-soft);font-size:clamp(15px,2vw,18px);line-height:1.55}
+.bridge .badges{margin-top:16px}
 .hero{display:grid;gap:20px;padding-top:10px}
 .intro{min-width:0}
 h1{font-size:clamp(28px,8.6vw,49px);line-height:1.14}
@@ -152,6 +158,23 @@ footer details a{color:var(--muted)}
   <a class="top-link" href="#get" data-track="web.get_jump">앱 받기</a>
 </header>
 <main class="wrap">
+  <!--gen:ad-bridges-->
+  <section class="bridge" data-campaigns="ig-hub-v5-android" aria-labelledby="bridge-0" hidden>
+    <h2 id="bridge-0"><span>후쿠오카·오사카 근교,</span> <span>가는 길까지</span></h2>
+    <p>근교 도시까지 걸리는 시간과 요금을 앱에서 봐요.</p>
+    <div class="badges"><a class="store play" href="https://play.google.com/store/apps/details?id=com.sossost.sutanpu&amp;referrer=utm_source%3Dweb%26utm_medium%3Dsite" data-track="web.store_open" data-store="google_play" data-place="bridge"><img src="assets/google-play-badge-ko.png" width="646" height="250" alt="Google Play에서 다운로드"></a></div>
+  </section>
+  <!--/gen:ad-bridges-->
+  <script>
+  // 광고 다리: 주소의 ct가 data-campaigns에 있는 칸만 보인다. 그리기 전에 돌려 아래 화면이 밀려 내려가지 않게 인라인으로 둔다
+  (function () {
+    var ct = new URLSearchParams(window.location.search).get('ct');
+    if (ct == null) return;
+    document.querySelectorAll('.bridge[data-campaigns]').forEach(function (bridge) {
+      if (bridge.getAttribute('data-campaigns').split(' ').indexOf(ct) !== -1) bridge.hidden = false;
+    });
+  })();
+  </script>
   <section class="hero" aria-labelledby="title">
     <div class="intro">
       <h1 id="title"><span>내 공항에서 직항으로</span> <span>가는 일본 소도시</span></h1>

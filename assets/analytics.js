@@ -4,15 +4,16 @@
 // 그래서 같은 날 페이지를 넘어가도 한 방문자로 이어지고, 다음 날이면 다른 방문자가 된다.
 // 광고 이름은 ct로 잇는다: 주소에 ct가 없으면 같은 사이트의 앞 페이지 주소에서 ct를 읽는다.
 // 웹 이벤트는 이름이 'web.'으로 시작하고 platform: 'web'을 달아 앱 이벤트와 나눈다.
-// 누른 것은 HTML의 data-track(이벤트 이름)과 data-airport·data-city·data-store(속성)로 정한다. 생성기와 첫 화면 원본이 붙인다.
+// 누른 것은 HTML의 data-track(이벤트 이름)과 data-airport·data-city·data-store·data-place(속성)로 정한다. 생성기와 첫 화면 원본이 붙인다.
 (function () {
   // 앱 .env.local의 EXPO_PUBLIC_POSTHOG_KEY와 같은 프로젝트 키(phc_). 공개용이라 페이지에 넣어도 된다. 다른 키는 넣지 않는다
   const PROJECT_KEY = 'phc_msJAmtEqr8y6wagv66sUKbekQZWWbRWVTv3qUHCqB4vK';
   const API_HOST = 'https://us.i.posthog.com';
   const CAMPAIGN_PATTERN = /^[a-z0-9-]{1,40}$/;
   // '$' 없이 남기는 속성: PostHog가 받는 데 필요한 둘과 우리가 붙이는 것. 이 밖(utm_*, fbclid 같은 광고 클릭 ID)은 보내기 전에 버린다
-  const PLAIN_PROPERTIES = ['token', 'distinct_id', 'platform', 'page', 'ct', 'ct_from', 'airport', 'city', 'store'];
-  const TRACKED_DATA = ['airport', 'city', 'store'];
+  const PLAIN_PROPERTIES = ['token', 'distinct_id', 'platform', 'page', 'ct', 'ct_from', 'airport', 'city', 'store', 'place'];
+  // place: 같은 단추가 페이지 여러 곳에 있을 때 어느 자리인지(광고 다리는 bridge). 없으면 기존 자리
+  const TRACKED_DATA = ['airport', 'city', 'store', 'place'];
   // Vercel 사본에서만 Vercel Web Analytics를 함께 쓴다. github.io에는 /_vercel/insights가 없어 불러오지 않는다
   const VERCEL_HOST_SUFFIX = '.vercel.app';
   const VERCEL_SCRIPT = '/_vercel/insights/script.js';
