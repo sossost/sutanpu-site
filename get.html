@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>스탄푸 앱 받기</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<!-- tools/gen-direct-pages.mjs가 만든 파일이다. 손으로 고치지 않는다 -->
+<style>
+:root{--suki-deep:#D81E3F;--suki-soft:#FFF0F2;--ink:#15161A;--ink-soft:#36383D;--muted:#6A6C72;--line:#ECEEF2;--link:#1F5FB8;--white:#FFFFFF}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--white);color:var(--ink);font:17px/1.7 -apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif;word-break:keep-all}
+img{display:block;max-width:100%;height:auto}
+a{color:var(--link)}
+main{max-width:480px;margin:0 auto;padding:48px 20px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{width:56px;height:56px;border-radius:22%;box-shadow:0 0 0 1px var(--line)}
+h1{margin:0;font-size:24px;line-height:1.3}
+p{margin:16px 0 0;color:var(--ink-soft)}
+.badges{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:24px}
+.store{display:inline-block;border-radius:8px}
+.store img{height:44px;width:auto}
+.store.play img{height:57px;margin:-7px 0}
+</style>
+<style>
+html:not([data-device="ios"]) .only-ios,html:not([data-device="android"]) .only-android,html:not([data-device="pc"]) .only-pc,
+html[data-device="ios"] .not-ios,html[data-device="android"] .not-android,
+html[data-device="ios"] .not-phone,html[data-device="android"] .not-phone,
+html:not([data-device="ios"]):not([data-device="android"]) .only-phone{display:none!important}
+</style>
+<script>
+(function () {
+  var ua = navigator.userAgent;
+  var isIos = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+  document.documentElement.setAttribute('data-device', /Android/.test(ua) ? 'android' : isIos ? 'ios' : 'pc');
+})();
+</script>
+</head>
+<body>
+<main>
+  <div class="brand"><img src="assets/icon-192.png" width="192" height="192" alt=""><h1>스탄푸 앱 받기</h1></div>
+  <p class="not-phone">이 페이지는 폰에서 열면 바로 스토어로 넘어가요. 컴퓨터에서는 아래 스토어 페이지로 가거나 <a href="./">스탄푸 소개</a>에서 QR을 폰 카메라로 비춰 주세요.</p>
+  <p class="only-phone">스토어로 넘어가고 있어요. 넘어가지 않으면 아래 단추를 눌러 주세요.</p>
+  <div class="badges"><a class="store not-android" href="https://apps.apple.com/kr/app/id6829795097?pt=129681187&amp;ct=web&amp;mt=8" data-track="web.store_open" data-store="app_store"><img src="assets/app-store-badge-ko.svg" width="130" height="40" alt="App Store에서 다운로드"></a><a class="store play not-ios" href="https://play.google.com/store/apps/details?id=com.sossost.sutanpu&amp;referrer=utm_source%3Dweb%26utm_medium%3Dsite" data-track="web.store_open" data-store="google_play"><img src="assets/google-play-badge-ko.png" width="646" height="250" alt="Google Play에서 다운로드"></a></div>
+</main>
+<script src="assets/store-ct.js" defer></script>
+<script src="assets/analytics.js" defer></script>
+<script>
+// 인라인 스크립트에는 defer가 듣지 않는다. store-ct.js·analytics.js(defer)가 끝난 뒤인 DOMContentLoaded에 돈다
+document.addEventListener('DOMContentLoaded', function () {
+  var device = document.documentElement.getAttribute('data-device');
+  if (device !== 'ios' && device !== 'android') return;
+  // store-ct.js가 주소의 ct를 붙인 단추 주소를 그대로 쓴다(App Store ct, Play utm_source)
+  var link = document.querySelector(device === 'ios' ? '.store.not-android' : '.store.not-ios');
+  var target = link.href;
+  var store = device === 'ios' ? 'app_store' : 'google_play';
+  var started = Date.now();
+  var isDone = false;
+  function go() {
+    if (isDone) return;
+    isDone = true;
+    window.location.replace(target);
+  }
+  function waitForTracker() {
+    var tracker = window.posthog;
+    if (tracker == null) return go();
+    if (tracker.__loaded) {
+      tracker.capture('web.qr_open', { store: store }, { transport: 'sendBeacon', send_instantly: true });
+      return go();
+    }
+    if (Date.now() - started > 1500) return go();
+    setTimeout(waitForTracker, 50);
+  }
+  waitForTracker();
+});
+</script>
+</body>
+</html>

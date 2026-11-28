@@ -12,7 +12,7 @@
   const CAMPAIGN_PATTERN = /^[a-z0-9-]{1,40}$/;
   // '$' 없이 남기는 속성: PostHog가 받는 데 필요한 둘과 우리가 붙이는 것. 이 밖(utm_*, fbclid 같은 광고 클릭 ID)은 보내기 전에 버린다
   const PLAIN_PROPERTIES = ['token', 'distinct_id', 'platform', 'page', 'ct', 'ct_from', 'airport', 'city', 'store', 'place'];
-  // place: 같은 단추가 페이지 여러 곳에 있을 때 어느 자리인지(광고 다리는 bridge). 없으면 기존 자리
+  // place: 같은 단추가 페이지 여러 곳에 있을 때 어느 자리인지(top 머리, bar 아래 띠). 없으면 받기 칸
   const TRACKED_DATA = ['airport', 'city', 'store', 'place'];
   // Vercel 사본에서만 Vercel Web Analytics를 함께 쓴다. github.io에는 /_vercel/insights가 없어 불러오지 않는다
   const VERCEL_HOST_SUFFIX = '.vercel.app';
